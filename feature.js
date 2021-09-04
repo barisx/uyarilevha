@@ -7,7 +7,7 @@ window.onload = function() {
       document.querySelectorAll("input.wc-pao-addon-checkbox")[i].setAttribute( "onchange", "singleChoice(this.value)" );
     }
     document.querySelectorAll("div.wc-pao-addon-sac-uzerine-uygulama")[0].hidden = true;
-    document.querySelectorAll("div.wc-pao-addon-pvc-uzerine-uygulama-uzerine-uygulama")[0].hidden = true;
+    document.querySelectorAll("div.wc-pao-addon-pvc-uzerine-uygulama")[0].hidden = true;
     document.querySelectorAll("div.wc-pao-addon-etiket")[0].hidden = true;
 };
 
@@ -58,7 +58,7 @@ function setData(value){
 
     }else{
         document.querySelectorAll("div.wc-pao-addon-sac-uzerine-uygulama")[0].hidden = true
-        document.querySelectorAll("div.wc-pao-addon-pvc-uzerine-uygulama-uzerine-uygulama")[0].hidden = true
+        document.querySelectorAll("div.wc-pao-addon-pvc-uzerine-uygulama")[0].hidden = true
         document.querySelectorAll("div.wc-pao-addon-etiket")[0].hidden = true
     }
 }
