@@ -20,7 +20,7 @@ function setData(value){
     var selectedOption = e.options[e.selectedIndex].value
     if (selectedOption == "fotolumen" | selectedOption == "reflektorlu" ) {
         
-        document.querySelectorAll("div.wc-pao-addon-pvc-uzerine-uygulama-uzerine-uygulama")[0].hidden = false
+        document.querySelectorAll("div.wc-pao-addon-pvc-uzerine-uygulama")[0].hidden = false
         document.querySelectorAll("div.wc-pao-addon-etiket")[0].hidden = false
 
         if (value=="8x12") { document.querySelectorAll("div.wc-pao-addon-sac-uzerine-uygulama")[0].hidden = true; return}
