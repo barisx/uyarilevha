@@ -28,11 +28,12 @@ function setData(value){
         if (value=="17x25") { document.querySelectorAll("div.wc-pao-addon-sac-uzerine-uygulama")[0].hidden = true; return }
         document.querySelectorAll("div.wc-pao-addon-sac-uzerine-uygulama")[0].hidden = false
         var classes = {
-            "25x35": "p.wc-pao-addon-302-sac-2-0",
-            "35x50": "p.wc-pao-addon-302-sac-2-1",
-            "50x70": "p.wc-pao-addon-302-sac-2-2",
-            "70x100": "p.wc-pao-addon-302-sac-2-3",
+            "25x35": "p.wc-pao-addon-302-sac-uzerine-uygulama-2-0",
+            "35x50": "p.wc-pao-addon-302-sac-uzerine-uygulama-2-1",
+            "50x70": "p.wc-pao-addon-302-sac-uzerine-uygulama-2-2",
+            "70x100": "p.wc-pao-addon-302-sac-uzerine-uygulama-2-3",
         }
+
 
         var elements = [ 
             "25x35",
