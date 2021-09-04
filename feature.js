@@ -13,10 +13,10 @@ window.onload = function() {
 
 function setData(value){
     e = document.querySelectorAll("select#pa_malzeme-turu")[0];
-    document.querySelectorAll("input[value='25x35']")[0].checked = false;
-    document.querySelectorAll("input[value='35x50']")[0].checked = false;
-    document.querySelectorAll("input[value='50x70']")[0].checked = false;
-    document.querySelectorAll("input[value='70x100']")[0].checked = false;
+    document.querySelectorAll("input[value=\'25x35\']")[0].checked = false;
+    document.querySelectorAll("input[value=\'35x50\']")[0].checked = false;
+    document.querySelectorAll("input[value=\'50x70\']")[0].checked = false;
+    document.querySelectorAll("input[value=\'70x100\']")[0].checked = false;
     var selectedOption = e.options[e.selectedIndex].value
     if (selectedOption == "fotolumen" | selectedOption == "reflektorlu" ) {
         
