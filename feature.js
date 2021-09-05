@@ -64,7 +64,7 @@ function setData(value){
     }
 }
 
-function singleChoice(except) {
+function singleChoice(except) {  // normal checkbox -> radio checkbox
   inputs = document.querySelectorAll("input.wc-pao-addon-checkbox")
   for (var i = 0; i < inputs.length ; i++){
     if (inputs[i].value == except) { continue; }
