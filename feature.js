@@ -1,38 +1,54 @@
 var dataID = document.querySelectorAll("a[data-title=\"Add to wishlist\"")[0].getAttribute("data-original-product-id");
 
-function getSelectedValue(id) {
-  e = document.querySelectorAll("select#" + id)[0];
-  return e.options[e.selectedIndex].value;
+// dekota, pvc, sac cift yonlu ve sadece secili boyut
+function getSelectedValueByID(id){
+    e = document.querySelectorAll("select#"+id)[0];
+    return e.options[e.selectedIndex].value
 }
 
-function unhideOnlyOneChoice(selectedKey, elements) {
-  for (var key in elements) {
-    var value = elements[key];
-    if (selectedKey == key)
-      document.querySelectorAll(elements[selectedKey])[0].hidden = false;
-    else document.querySelectorAll(elements[key])[0].hidden = true;
-  }
-  return document.querySelectorAll(dict[selectedKey])[0].hidden === false;
+function unhideOnlyOneChoice(selectedKey, elements){
+    for(var key in elements) {
+      // var value = elements[key];
+      // console.log(value, "value")
+      document.querySelectorAll(elements[key])[0].hidden = !(selectedKey == key);
+      // console.log(document.querySelectorAll(elements[selectedKey])[0], selectedKey == key)
+    }
+
+    // console.log(document.querySelectorAll(elements[selectedKey])[0], document.querySelectorAll(elements[selectedKey])[0].hidden)
+    // Sending element if explicit it returns true
+    return document.querySelectorAll(elements[selectedKey])[0].hidden === false;
 }
 
-function onlyOneSizeChoicesCanShow() {
-  var currentSize = getSelectedValue("pa_olculer");
+function onlyOneSizeChoicesCanShow(){
+    var currentSize = getSelectedValueByID("pa_olculer")
 
-  var inputClasses = {
-    "8x12": "p.wc-pao-addon-"+dataID+"-laminasyon-koruyucu-yuzey-kaplama-6-0",
-    "12x17": "p.wc-pao-addon-"+dataID+"-laminasyon-koruyucu-yuzey-kaplama-6-1",
-    "17x25": "p.wc-pao-addon-"+dataID+"-laminasyon-koruyucu-yuzey-kaplama-6-2",
-    "25x35": "p.wc-pao-addon-"+dataID+"-laminasyon-koruyucu-yuzey-kaplama-6-3",
-    "35x50": "p.wc-pao-addon-"+dataID+"-laminasyon-koruyucu-yuzey-kaplama-6-4",
-    "50x70": "p.wc-pao-addon-"+dataID+"-laminasyon-koruyucu-yuzey-kaplama-6-5",
-    "70x100": "p.wc-pao-addon-"+dataID+"-laminasyon-koruyucu-yuzey-kaplama-6-6",
-  };
+    var inputClassesLamination = {
+        "8x12": "p.wc-pao-addon-"+dataID+"-laminasyon-koruyucu-yuzey-kaplama-6-0",
+        "12x17": "p.wc-pao-addon-"+dataID+"-laminasyon-koruyucu-yuzey-kaplama-6-1",
+        "17x25": "p.wc-pao-addon-"+dataID+"-laminasyon-koruyucu-yuzey-kaplama-6-2",
+        "25x35": "p.wc-pao-addon-"+dataID+"-laminasyon-koruyucu-yuzey-kaplama-6-3",
+        "35x50": "p.wc-pao-addon-"+dataID+"-laminasyon-koruyucu-yuzey-kaplama-6-4",
+        "50x70": "p.wc-pao-addon-"+dataID+"-laminasyon-koruyucu-yuzey-kaplama-6-5",
+        "70x100": "p.wc-pao-addon-"+dataID+"-laminasyon-koruyucu-yuzey-kaplama-6-6",
+    }
 
-  unhideOnlyOneChoice(currentSize, inputClasses);
+    var inputClassesDoubleSide = {
+        "8x12": "p.wc-pao-addon-"+dataID+"-cift-yon-baski-secenegi-7-0",
+        "12x17": "p.wc-pao-addon-"+dataID+"-cift-yon-baski-secenegi-7-1",
+        "17x25": "p.wc-pao-addon-"+dataID+"-cift-yon-baski-secenegi-7-2",
+        "25x35": "p.wc-pao-addon-"+dataID+"-cift-yon-baski-secenegi-7-3",
+        "35x50": "p.wc-pao-addon-"+dataID+"-cift-yon-baski-secenegi-7-4",
+        "50x70": "p.wc-pao-addon-"+dataID+"-cift-yon-baski-secenegi-7-5",
+        "70x100": "p.wc-pao-addon-"+dataID+"-cift-yon-baski-secenegi-7-6",
+    }
+    unhideOnlyOneChoice(currentSize, inputClassesLamination)
+    console.log(Object.keys(inputClassesDoubleSide).includes(currentSize))
+    unhideOnlyOneChoice(currentSize, inputClassesDoubleSide)
+
 }
 
 function onlyTwoTypeOfProductsCanNotBeLamination() {
-  var selectedOption = getSelectedValue("pa_malzeme-turu");
+  var selectedOption = getSelectedValueByID("pa_malzeme-turu");
   console.log(selectedOption);
   var onlyThreeTypeOfProducts = ["sac", "etiket"];
 
