@@ -21,12 +21,33 @@ document
     : chooseClassObject[choosenDataType]["sac"]
   updateSizes();
   updateChooses();
+  resetLanguage();
+  resetDirection();
 });
 window
 .addEventListener("load", () => {
   updateSizes();
   updateChooses();
+  document.querySelector("a.reset_variations").addEventListener("click", () => {
+    specifications()
+  })
 });
+
+function resetLanguage(){
+  var element = document.querySelector("div.wc-pao-addon-ilave-dil-secenekleri").querySelectorAll("a")
+  element[0].classList.add("selected")
+  for(var i = 1; i < element.length; i++){
+    element[i].classList.remove("selected")
+  }
+}
+
+function resetDirection(){
+  var element = document.querySelector("div.wc-pao-addon-levha-sekli-istege-bagli").querySelectorAll("a")
+  element[0].classList.add("selected")
+  for(var i = 1; i < element.length; i++){
+    element[i].classList.remove("selected")
+  }
+}
 
   var dataID = document.querySelectorAll("a[data-title=\"Add to wishlist\"")[0].getAttribute("data-original-product-id");
   function choosenMaterialType() {
@@ -42,7 +63,6 @@ window
   function validSacSize(){
     return ["25x35", "35x50", "50x70", "70x100"].includes(choosenSize)
   }
-
     var chooseClassObject = {
       pvc: {
         "etiket": false,
@@ -104,9 +124,7 @@ window
           document.querySelector(e[i]).hidden = true
         }
     })
-      Object.values(sizeClassComponents[choosenMaterialSize()]).forEach((element) => {
-        document.querySelector(element).hidden = false
-      })
+      Object.values(sizeClassComponents[choosenMaterialSize()]).forEach((element) => document.querySelector(element).hidden = false)
     }
     var applyClassList = {
       "sac": "div.wc-pao-addon-sac-uzerine-uygulama",
