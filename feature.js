@@ -192,7 +192,6 @@ function specifications() {
 
 
 function reflectorAndPhotolumenOnlyPVCOrSACOrEtiket(selectedMaterial) {
-  console.log(selectedMaterial)
   if(document.querySelector("input[name=\""+selectedMaterial+"\"]").checked){
     document.querySelector("input[name=\'addon-"+ dataID +"-sac-uzerine-uygulama-4[]\']").disabled = true
     document.querySelector("input[name=\'addon-"+ dataID +"-pvc-uzerine-uygulama-5[]\']").disabled = true
