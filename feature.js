@@ -1,6 +1,6 @@
 document
 .querySelector("select#pa_olculer")
-.addEventListener("change", () => {
+.addEventListener("change", (event) => {
   document.querySelector("div.wc-pao-addons-container").querySelectorAll("input[type=checkbox]").forEach(e => e.checked = false)
   choosenSize = choosenMaterialSize()
   chooseClassObject[choosenDataType]["sac"] = choosenDataType === "reflektorlu" || choosenDataType == "fotolumen"
@@ -10,9 +10,11 @@ document
   updateChooses();
 });
 
+
+
 document
 .querySelector("select#pa_malzeme-turu")
-.addEventListener("change", () => {
+.addEventListener("change", (event) => {
   document.querySelector("div.wc-pao-addons-container").querySelectorAll("input[type=checkbox]").forEach(e => e.checked = false)
   choosenSize = choosenMaterialSize()
   choosenDataType = choosenMaterialType()
@@ -23,17 +25,28 @@ document
   updateChooses();
   resetLanguage();
   resetDirection();
+  if(choosenDataType === "reflektorlu" || choosenDataType === "fotolumen"){
+    addListenerForApplyableMaterials()
+  } else {
+    removeListenerForApplyableMaterials()
+  }
 });
+
+
+
 window
 .addEventListener("load", () => {
   updateSizes();
   updateChooses();
   document.querySelector("a.reset_variations").addEventListener("click", () => {
+    resetLanguage();
+    resetDirection();
     specifications()
+    closeAllApplyableMaterials()
   })
 });
 
-function resetLanguage(){
+function resetLanguageWithClassName(){
   var element = document.querySelector("div.wc-pao-addon-ilave-dil-secenekleri").querySelectorAll("a")
   element[0].classList.add("selected")
   for(var i = 1; i < element.length; i++){
@@ -41,12 +54,20 @@ function resetLanguage(){
   }
 }
 
-function resetDirection(){
+function resetLanguage(){
+  document.querySelector("select#addon-602-ilave-dil-secenekleri-0").selectedIndex = 0
+}
+
+function resetDirectionWithClassName(){
   var element = document.querySelector("div.wc-pao-addon-levha-sekli-istege-bagli").querySelectorAll("a")
   element[0].classList.add("selected")
   for(var i = 1; i < element.length; i++){
     element[i].classList.remove("selected")
   }
+}
+
+function resetDirection(){
+  document.querySelector("select#addon-602-levha-sekli-istege-bagli-1").selectedIndex = 0
 }
 
   var dataID = document.querySelectorAll("a[data-title=\"Add to wishlist\"")[0].getAttribute("data-original-product-id");
@@ -118,7 +139,18 @@ function resetDirection(){
     function updateChooses() {
       Object.entries(chooseClassObject[choosenDataType]).forEach(dict => document.querySelector(applyClassList[dict[0]]).hidden = !dict[1])
     }
+    function closeAllApplyableMaterials(){
+      Object.values(applyClassList).forEach(element => document.querySelector(element).hidden = true)
+    }
+    function openAllApplyableMaterials(){
+      Object.values(applyClassList).forEach(element => document.querySelector(element).hidden = false)
+    }
     function updateSizes() {
+      if(!choosenSize){
+        closeAllApplyableMaterials()
+      } else {
+        openAllApplyableMaterials()
+      }
       Object.values(sizeClassComponents).forEach(e => {
         for( var i = 0; i < e.length; i++){ 
           document.querySelector(e[i]).hidden = true
@@ -156,6 +188,62 @@ function specifications() {
     openHideDiv.display = "block";
   }
   change("up-down-icon");
+}
+
+
+function reflectorAndPhotolumenOnlyPVCOrSACOrEtiket(selectedMaterial) {
+  console.log(selectedMaterial)
+  if(document.querySelector("input[name=\""+selectedMaterial+"\"]").checked){
+    document.querySelector("input[name=\'addon-"+ dataID +"-sac-uzerine-uygulama-4[]\']").disabled = true
+    document.querySelector("input[name=\'addon-"+ dataID +"-pvc-uzerine-uygulama-5[]\']").disabled = true
+    document.querySelector("input[name=\'addon-"+ dataID +"-etiket-6[]\']").disabled = true
+    document.querySelector("input[name=\""+selectedMaterial+"\"]").disabled = false
+  } else {
+    document.querySelector("input[name=\'addon-"+ dataID +"-sac-uzerine-uygulama-4[]\']").disabled = false
+    document.querySelector("input[name=\'addon-"+ dataID +"-pvc-uzerine-uygulama-5[]\']").disabled = false
+    document.querySelector("input[name=\'addon-"+ dataID +"-etiket-6[]\']").disabled = false
+    document.querySelector("input[name=\""+selectedMaterial+"\"]").disabled = false
+  }
+}
+
+function addListenerForApplyableMaterials(){
+  document
+  .querySelector("input[name=\'addon-"+ dataID +"-etiket-6[]\']")
+  .addEventListener("click", (e) => {
+    reflectorAndPhotolumenOnlyPVCOrSACOrEtiket(e.srcElement.name)
+  }, {passive: false})
+
+  document
+  .querySelector("input[name=\'addon-"+ dataID +"-sac-uzerine-uygulama-4[]\']")
+  .addEventListener("click", (e) => {
+    reflectorAndPhotolumenOnlyPVCOrSACOrEtiket(e.srcElement.name)
+  }, {passive: false})
+
+  document
+  .querySelector("input[name=\'addon-"+ dataID +"-pvc-uzerine-uygulama-5[]\']")
+  .addEventListener("click", (e) => {
+    reflectorAndPhotolumenOnlyPVCOrSACOrEtiket(e.srcElement.name)
+  }, {passive: false})
+}
+
+function removeListenerForApplyableMaterials(){
+  document
+  .querySelector("input[name=\'addon-"+ dataID +"-etiket-6[]\']")
+  .addEventListener("click", (e) => {
+    reflectorAndPhotolumenOnlyPVCOrSACOrEtiket(e.srcElement.name)
+  }, {passive: true});
+
+  document
+  .querySelector("input[name=\'addon-"+ dataID +"-sac-uzerine-uygulama-4[]\']")
+  .addEventListener("click", (e) => {
+    reflectorAndPhotolumenOnlyPVCOrSACOrEtiket(e.srcElement.name)
+  }, {passive: true});
+
+  document
+  .querySelector("input[name=\'addon-"+ dataID +"-pvc-uzerine-uygulama-5[]\']")
+  .addEventListener("click", (e) => {
+    reflectorAndPhotolumenOnlyPVCOrSACOrEtiket(e.srcElement.name)
+  }, {passive: true});
 }
 
 function change(iconID) {
