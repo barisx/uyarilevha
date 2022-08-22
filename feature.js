@@ -192,17 +192,10 @@ function specifications() {
 
 
 function reflectorAndPhotolumenOnlyPVCOrSACOrEtiket(selectedMaterial) {
-  if(document.querySelector("input[name=\""+selectedMaterial+"\"]").checked){
-    document.querySelector("input[name=\'addon-"+ dataID +"-sac-uzerine-uygulama-4[]\']").disabled = true
-    document.querySelector("input[name=\'addon-"+ dataID +"-pvc-uzerine-uygulama-5[]\']").disabled = true
-    document.querySelector("input[name=\'addon-"+ dataID +"-etiket-6[]\']").disabled = true
-    document.querySelector("input[name=\""+selectedMaterial+"\"]").disabled = false
-  } else {
-    document.querySelector("input[name=\'addon-"+ dataID +"-sac-uzerine-uygulama-4[]\']").disabled = false
-    document.querySelector("input[name=\'addon-"+ dataID +"-pvc-uzerine-uygulama-5[]\']").disabled = false
-    document.querySelector("input[name=\'addon-"+ dataID +"-etiket-6[]\']").disabled = false
-    document.querySelector("input[name=\""+selectedMaterial+"\"]").disabled = false
-  }
+    document.querySelector("input[name=\'addon-"+ dataID +"-sac-uzerine-uygulama-4[]\']").checked = false
+    document.querySelector("input[name=\'addon-"+ dataID +"-pvc-uzerine-uygulama-5[]\']").checked = false
+    document.querySelector("input[name=\'addon-"+ dataID +"-etiket-6[]\']").checked = false
+    document.querySelector("input[name=\""+selectedMaterial+"\"]").checked = true
 }
 
 function addListenerForApplyableMaterials(){
