@@ -55,7 +55,7 @@ function resetLanguageWithClassName(){
 }
 
 function resetLanguage(){
-  document.querySelector("select#addon-602-ilave-dil-secenekleri-0").selectedIndex = 0
+  document.querySelector("select#addon-"+dataID+"-ilave-dil-secenekleri-0").selectedIndex = 0
 }
 
 function resetDirectionWithClassName(){
@@ -67,7 +67,7 @@ function resetDirectionWithClassName(){
 }
 
 function resetDirection(){
-  document.querySelector("select#addon-602-levha-sekli-istege-bagli-1").selectedIndex = 0
+  document.querySelector("select#addon-"+dataID+"-levha-sekli-istege-bagli-1").selectedIndex = 0
 }
 
   var dataID = document.querySelectorAll("a[data-title=\"Add to wishlist\"")[0].getAttribute("data-original-product-id");
