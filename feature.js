@@ -198,23 +198,119 @@ function reflectorAndPhotolumenOnlyPVCOrSACOrEtiket(selectedMaterial) {
     document.querySelector("input[name=\""+selectedMaterial+"\"]").checked = true
 }
 
+function disableLamination() {
+  // addon-302-laminasyon-koruyucu-yuzey-kaplama-3[]
+  document.querySelectorAll("input[name=\'addon-"+ dataID +"-laminasyon-koruyucu-yuzey-kaplama-3[]\']")[3].checked = false
+  document.querySelectorAll("input[name=\'addon-"+ dataID +"-laminasyon-koruyucu-yuzey-kaplama-3[]\']")[3].disable = true
+}
+
+function activeLamination() {
+  // addon-302-laminasyon-koruyucu-yuzey-kaplama-3[]
+  document.querySelectorAll("input[name=\'addon-"+ dataID +"-laminasyon-koruyucu-yuzey-kaplama-3[]\']")[3].checked = false
+  document.querySelectorAll("input[name=\'addon-"+ dataID +"-laminasyon-koruyucu-yuzey-kaplama-3[]\']")[3].disable = false
+}
+
+
+function disableSacAndEtiket() {
+  document.querySelector("input[name=\'addon-"+ dataID +"-sac-uzerine-uygulama-4[]\']").checked = false
+  document.querySelector("input[name=\'addon-"+ dataID +"-sac-uzerine-uygulama-4[]\']").disable = true
+  document.querySelector("input[name=\'addon-"+ dataID +"-etiket-6[]\']").checked = false
+  document.querySelector("input[name=\'addon-"+ dataID +"-etiket-6[]\']").disable = true
+}
+
+function activeSacAndEtiket() {
+  document.querySelector("input[name=\'addon-"+ dataID +"-sac-uzerine-uygulama-4[]\']").checked = false
+  document.querySelector("input[name=\'addon-"+ dataID +"-sac-uzerine-uygulama-4[]\']").disable = false
+  document.querySelector("input[name=\'addon-"+ dataID +"-etiket-6[]\']").checked = false
+  document.querySelector("input[name=\'addon-"+ dataID +"-etiket-6[]\']").disable = false
+}
+
+function checkLamination(){
+  if(document.querySelectorAll("input[name=\'addon-"+ dataID +"-laminasyon-koruyucu-yuzey-kaplama-3[]\']")[3].checked){
+    // true
+    disableSacAndEtiket()
+  } else {
+    activeSacAndEtiket()
+  }
+}
+
+function checkSac(){
+  if(document.querySelector("input[name=\'addon-"+ dataID +"-sac-uzerine-uygulama-4[]\']").checked){
+    disableLamination()
+  } else {
+    activeLamination()
+  }
+}
+
+function disableDoubleSide() {
+  // addon-302-cift-yon-baski-secenegi-7[]
+  document.querySelectorAll("input[name=\'addon-"+ dataID +"-cift-yon-baski-secenegi-7[]\']")[3].checked = false
+  document.querySelectorAll("input[name=\'addon-"+ dataID +"-cift-yon-baski-secenegi-7[]\']")[3].disable = true
+}
+
+function activeDoubleSide() {
+  // addon-302-cift-yon-baski-secenegi-7[]
+  document.querySelectorAll("input[name=\'addon-"+ dataID +"-cift-yon-baski-secenegi-7[]\']")[3].disable = false
+}
+
+function checkEtiket(){
+  if(document.querySelector("input[name=\'addon-"+ dataID +"-etiket-6[]\']").checked){
+    disableDoubleSide()
+  } else {
+    activeDoubleSide()
+  }
+}
+
+function disableEtiket() {
+  // addon-302-cift-yon-baski-secenegi-7[]
+  document.querySelector("input[name=\'addon-"+ dataID +"-etiket-6[]\']").checked = false
+  document.querySelector("input[name=\'addon-"+ dataID +"-etiket-6[]\']").disable = true
+}
+
+function activeEtiket() {
+  // addon-302-cift-yon-baski-secenegi-7[]
+  document.querySelector("input[name=\'addon-"+ dataID +"-etiket-6[]\']").disable = false
+}
+
+function checkDoubleSide(){
+  if(document.querySelector("input[name=\'addon-"+ dataID +"-etiket-6[]\']").checked){
+    disableEtiket()
+  } else {
+    activeEtiket()
+  }
+}
+
 function addListenerForApplyableMaterials(){
   document
   .querySelector("input[name=\'addon-"+ dataID +"-etiket-6[]\']")
   .addEventListener("click", (e) => {
     reflectorAndPhotolumenOnlyPVCOrSACOrEtiket(e.srcElement.name)
+    checkSac()
+    checkEtiket()
   }, {passive: false})
 
   document
   .querySelector("input[name=\'addon-"+ dataID +"-sac-uzerine-uygulama-4[]\']")
   .addEventListener("click", (e) => {
     reflectorAndPhotolumenOnlyPVCOrSACOrEtiket(e.srcElement.name)
+    checkSac()
   }, {passive: false})
 
   document
   .querySelector("input[name=\'addon-"+ dataID +"-pvc-uzerine-uygulama-5[]\']")
   .addEventListener("click", (e) => {
     reflectorAndPhotolumenOnlyPVCOrSACOrEtiket(e.srcElement.name)
+  }, {passive: false})
+
+  document
+  .querySelectorAll("input[name=\'addon-"+ dataID +"-laminasyon-koruyucu-yuzey-kaplama-3[]\']")[3]
+  .addEventListener("click", (e) => {
+    checkLamination()
+  }, {passive: false})
+
+  document.querySelectorAll("input[name=\'addon-"+ dataID +"-cift-yon-baski-secenegi-7[]\']")[3]
+  .addEventListener("click", (e) => {
+    checkDoubleSide()
   }, {passive: false})
 }
 
