@@ -1,8 +1,8 @@
 |Reflektorlu/Fotolumen|Sac|Etiket|Laminasyon|PVC|Cift|Work?|
 |------|---------|----------|--|---|--|--|
-|Sac|-|❌yes|❌yes|❌yes|✅|no|
-|Sac/Cift|-|❌yes|❌yes|❌yes|-|no|
-|Etiket|❌yes|-|❌yes|❌yes|❌yes|no|
+|Sac|-|❌yes|❌yes|❌yes|✅|yes|
+|Sac/Cift|-|❌yes|❌yes|❌yes|-|yes|
+|Etiket|❌yes|-|❌yes|❌yes|❌yes|yes|
 |Laminasyon|❌yes|❌yes|-|✅yes|✅yes|yes|
 |Laminasyon/Cift|❌yes|❌yes|-|✅yes|-|yes|
 |PVC|❌yes|❌yes|✅yes|-|✅yes|yes|
