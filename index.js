@@ -166,20 +166,20 @@ function updateSizes() {
 }
 var applyClassList = {
     "sac": "div.wc-pao-addon-sac-uzerine-uygulama",
-    "etiket": "div.wc-pao-addon-etiket",
+    "etiket": "div.wc-pao-addon-sadece-etiket",
     "pvc": "div.wc-pao-addon-pvc-uzerine-uygulama",
     "laminasyon": "div.wc-pao-addon-laminasyon-koruyucu-yuzey-kaplama",
     "doubleside": "div.wc-pao-addon-cift-yon-baski-secenegi"
 }
 
 var sizeClassComponents = {
-    "8x12": ["p.wc-pao-addon-" + dataID + "-cift-yon-baski-secenegi-7-0", "p.wc-pao-addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-3-0", "p.wc-pao-addon-" + dataID + "-etiket-6-0"],
-    "12x17": ["p.wc-pao-addon-" + dataID + "-cift-yon-baski-secenegi-7-1", "p.wc-pao-addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-3-1", "p.wc-pao-addon-" + dataID + "-etiket-6-1"],
-    "17x25": ["p.wc-pao-addon-" + dataID + "-cift-yon-baski-secenegi-7-2", "p.wc-pao-addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-3-2", "p.wc-pao-addon-" + dataID + "-etiket-6-2"],
-    "25x35": ["p.wc-pao-addon-" + dataID + "-cift-yon-baski-secenegi-7-3", "p.wc-pao-addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-3-3", "p.wc-pao-addon-" + dataID + "-sac-uzerine-uygulama-4-0", "p.wc-pao-addon-" + dataID + "-etiket-6-3"],
-    "35x50": ["p.wc-pao-addon-" + dataID + "-cift-yon-baski-secenegi-7-4", "p.wc-pao-addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-3-4", "p.wc-pao-addon-" + dataID + "-sac-uzerine-uygulama-4-1", "p.wc-pao-addon-" + dataID + "-etiket-6-4"],
-    "50x70": ["p.wc-pao-addon-" + dataID + "-cift-yon-baski-secenegi-7-5", "p.wc-pao-addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-3-5", "p.wc-pao-addon-" + dataID + "-sac-uzerine-uygulama-4-2", "p.wc-pao-addon-" + dataID + "-etiket-6-5"],
-    "70x100": ["p.wc-pao-addon-" + dataID + "-cift-yon-baski-secenegi-7-6", "p.wc-pao-addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-3-6", "p.wc-pao-addon-" + dataID + "-sac-uzerine-uygulama-4-3", "p.wc-pao-addon-" + dataID + "-etiket-6-6"],
+    "8x12": ["p.wc-pao-addon-" + dataID + "-cift-yon-baski-secenegi-7-0", "p.wc-pao-addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-3-0", "p.wc-pao-addon-" + dataID + "-sadece-etiket-6-0"],
+    "12x17": ["p.wc-pao-addon-" + dataID + "-cift-yon-baski-secenegi-7-1", "p.wc-pao-addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-3-1", "p.wc-pao-addon-" + dataID + "-sadece-etiket-6-1"],
+    "17x25": ["p.wc-pao-addon-" + dataID + "-cift-yon-baski-secenegi-7-2", "p.wc-pao-addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-3-2", "p.wc-pao-addon-" + dataID + "-sadece-etiket-6-2"],
+    "25x35": ["p.wc-pao-addon-" + dataID + "-cift-yon-baski-secenegi-7-3", "p.wc-pao-addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-3-3", "p.wc-pao-addon-" + dataID + "-sac-uzerine-uygulama-4-0", "p.wc-pao-addon-" + dataID + "-sadece-etiket-6-3"],
+    "35x50": ["p.wc-pao-addon-" + dataID + "-cift-yon-baski-secenegi-7-4", "p.wc-pao-addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-3-4", "p.wc-pao-addon-" + dataID + "-sac-uzerine-uygulama-4-1", "p.wc-pao-addon-" + dataID + "-sadece-etiket-6-4"],
+    "50x70": ["p.wc-pao-addon-" + dataID + "-cift-yon-baski-secenegi-7-5", "p.wc-pao-addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-3-5", "p.wc-pao-addon-" + dataID + "-sac-uzerine-uygulama-4-2", "p.wc-pao-addon-" + dataID + "-sadece-etiket-6-5"],
+    "70x100": ["p.wc-pao-addon-" + dataID + "-cift-yon-baski-secenegi-7-6", "p.wc-pao-addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-3-6", "p.wc-pao-addon-" + dataID + "-sac-uzerine-uygulama-4-3", "p.wc-pao-addon-" + dataID + "-sadece-etiket-6-6"],
 };
 
 // feature.js end
@@ -200,7 +200,7 @@ function specifications() {
 function reflectorAndPhotolumenOnlyPVCOrSACOrEtiket(selectedMaterial) {
     document.querySelector("input[name=\'addon-" + dataID + "-sac-uzerine-uygulama-4[]\']").checked = false
     document.querySelector("input[name=\'addon-" + dataID + "-pvc-uzerine-uygulama-5[]\']").checked = false
-    document.querySelector("input[name=\'addon-" + dataID + "-etiket-6[]\']").checked = false
+    document.querySelector("input[name=\'addon-" + dataID + "-sadece-etiket-6[]\']").checked = false
     document.querySelector("input[name=\"" + selectedMaterial + "\"]").checked = true
 }
 
@@ -220,15 +220,15 @@ function activeLamination() {
 function disableSacAndEtiket() {
     document.querySelector("input[name=\'addon-" + dataID + "-sac-uzerine-uygulama-4[]\']").checked = false
     document.querySelector("input[name=\'addon-" + dataID + "-sac-uzerine-uygulama-4[]\']").disable = true
-    document.querySelector("input[name=\'addon-" + dataID + "-etiket-6[]\']").checked = false
-    document.querySelector("input[name=\'addon-" + dataID + "-etiket-6[]\']").disable = true
+    document.querySelector("input[name=\'addon-" + dataID + "-sadece-etiket-6[]\']").checked = false
+    document.querySelector("input[name=\'addon-" + dataID + "-sadece-etiket-6[]\']").disable = true
 }
 
 function activeSacAndEtiket() {
     document.querySelector("input[name=\'addon-" + dataID + "-sac-uzerine-uygulama-4[]\']").checked = false
     document.querySelector("input[name=\'addon-" + dataID + "-sac-uzerine-uygulama-4[]\']").disable = false
-    document.querySelector("input[name=\'addon-" + dataID + "-etiket-6[]\']").checked = false
-    document.querySelector("input[name=\'addon-" + dataID + "-etiket-6[]\']").disable = false
+    document.querySelector("input[name=\'addon-" + dataID + "-sadece-etiket-6[]\']").checked = false
+    document.querySelector("input[name=\'addon-" + dataID + "-sadece-etiket-6[]\']").disable = false
 }
 
 function checkLamination() {
@@ -260,7 +260,7 @@ function activeDoubleSide() {
 }
 
 function checkEtiket() {
-    if (document.querySelector("input[name=\'addon-" + dataID + "-etiket-6[]\']").checked) {
+    if (document.querySelector("input[name=\'addon-" + dataID + "-sadece-etiket-6[]\']").checked) {
         disableDoubleSide()
     } else {
         activeDoubleSide()
@@ -269,17 +269,17 @@ function checkEtiket() {
 
 function disableEtiket() {
     // addon-302-cift-yon-baski-secenegi-7[]
-    document.querySelector("input[name=\'addon-" + dataID + "-etiket-6[]\']").checked = false
-    document.querySelector("input[name=\'addon-" + dataID + "-etiket-6[]\']").disable = true
+    document.querySelector("input[name=\'addon-" + dataID + "-sadece-etiket-6[]\']").checked = false
+    document.querySelector("input[name=\'addon-" + dataID + "-sadece-etiket-6[]\']").disable = true
 }
 
 function activeEtiket() {
     // addon-302-cift-yon-baski-secenegi-7[]
-    document.querySelector("input[name=\'addon-" + dataID + "-etiket-6[]\']").disable = false
+    document.querySelector("input[name=\'addon-" + dataID + "-sadece-etiket-6[]\']").disable = false
 }
 
 function checkDoubleSide() {
-    if (document.querySelector("input[name=\'addon-" + dataID + "-etiket-6[]\']").checked) {
+    if (document.querySelector("input[name=\'addon-" + dataID + "-sadece-etiket-6[]\']").checked) {
         disableEtiket()
     } else {
         activeEtiket()
@@ -288,7 +288,7 @@ function checkDoubleSide() {
 
 function addListenerForApplyableMaterials() {
     document
-        .querySelector("input[name=\'addon-" + dataID + "-etiket-6[]\']")
+        .querySelector("input[name=\'addon-" + dataID + "-sadece-etiket-6[]\']")
         .addEventListener("click", (e) => {
             reflectorAndPhotolumenOnlyPVCOrSACOrEtiket(e.srcElement.name)
             checkSac()
@@ -334,7 +334,7 @@ function addListenerForApplyableMaterials() {
 
 function removeListenerForApplyableMaterials() {
     document
-        .querySelector("input[name=\'addon-" + dataID + "-etiket-6[]\']")
+        .querySelector("input[name=\'addon-" + dataID + "-sadece-etiket-6[]\']")
         .addEventListener("click", (e) => {
             reflectorAndPhotolumenOnlyPVCOrSACOrEtiket(e.srcElement.name)
         }, {
