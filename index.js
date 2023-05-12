@@ -8,6 +8,8 @@ document
             chooseClassObject[choosenDataType]["sac"]
         updateSizes();
         updateChooses();
+        activateTriggerUpdateOptions();
+
     });
 
 
@@ -25,6 +27,8 @@ document
         updateChooses();
         resetLanguage();
         resetDirection();
+        activateTriggerUpdateOptions();
+
         if (choosenDataType === "reflektorlu" || choosenDataType === "fotolumen") {
             addListenerForApplyableMaterials()
         } else {
@@ -204,164 +208,81 @@ function reflectorAndPhotolumenOnlyPVCOrSACOrEtiket(selectedMaterial) {
     document.querySelector("input[name=\"" + selectedMaterial + "\"]").checked = true
 }
 
-function disableLamination() {
-    // addon-302-laminasyon-koruyucu-yuzey-kaplama-3[]
-    document.querySelectorAll("input[name=\'addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-3[]\']")[3].checked = false
-    document.querySelectorAll("input[name=\'addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-3[]\']")[3].disable = true
-}
-
-function activeLamination() {
-    // addon-302-laminasyon-koruyucu-yuzey-kaplama-3[]
-    document.querySelectorAll("input[name=\'addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-3[]\']")[3].checked = false
-    document.querySelectorAll("input[name=\'addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-3[]\']")[3].disable = false
-}
-
-
-function disableSacAndEtiket() {
-    document.querySelector("input[name=\'addon-" + dataID + "-sac-uzerine-uygulama-4[]\']").checked = false
-    document.querySelector("input[name=\'addon-" + dataID + "-sac-uzerine-uygulama-4[]\']").disable = true
-    document.querySelector("input[name=\'addon-" + dataID + "-sadece-etiket-6[]\']").checked = false
-    document.querySelector("input[name=\'addon-" + dataID + "-sadece-etiket-6[]\']").disable = true
-}
-
-function activeSacAndEtiket() {
-    document.querySelector("input[name=\'addon-" + dataID + "-sac-uzerine-uygulama-4[]\']").checked = false
-    document.querySelector("input[name=\'addon-" + dataID + "-sac-uzerine-uygulama-4[]\']").disable = false
-    document.querySelector("input[name=\'addon-" + dataID + "-sadece-etiket-6[]\']").checked = false
-    document.querySelector("input[name=\'addon-" + dataID + "-sadece-etiket-6[]\']").disable = false
-}
-
-function checkLamination() {
-    if (document.querySelectorAll("input[name=\'addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-3[]\']")[3].checked) {
-        // true
-        disableSacAndEtiket()
-    } else {
-        activeSacAndEtiket()
-    }
-}
-
-function checkSac() {
-    if (document.querySelector("input[name=\'addon-" + dataID + "-sac-uzerine-uygulama-4[]\']").checked) {
-        disableLamination()
-    } else {
-        activeLamination()
-    }
-}
-
-function disableDoubleSide() {
-    // addon-302-cift-yon-baski-secenegi-7[]
-    document.querySelectorAll("input[name=\'addon-" + dataID + "-cift-yon-baski-secenegi-7[]\']").forEach(e => {e.checked = false})
-    document.querySelectorAll("input[name=\'addon-" + dataID + "-cift-yon-baski-secenegi-7[]\']").forEach(e => {e.disable = true})
-}
-
-function activeDoubleSide() {
-    // addon-302-cift-yon-baski-secenegi-7[]
-    document.querySelectorAll("input[name=\'addon-" + dataID + "-cift-yon-baski-secenegi-7[]\']").forEach(e => {e.disable = false})
-}
-
-function checkEtiket() {
-    if (document.querySelector("input[name=\'addon-" + dataID + "-sadece-etiket-6[]\']").checked) {
-        disableDoubleSide()
-    } else {
-        activeDoubleSide()
-    }
-}
-
-function disableEtiket() {
-    // addon-302-cift-yon-baski-secenegi-7[]
-    document.querySelector("input[name=\'addon-" + dataID + "-sadece-etiket-6[]\']").checked = false
-    document.querySelector("input[name=\'addon-" + dataID + "-sadece-etiket-6[]\']").disable = true
-}
-
-function activeEtiket() {
-    // addon-302-cift-yon-baski-secenegi-7[]
-    document.querySelector("input[name=\'addon-" + dataID + "-sadece-etiket-6[]\']").disable = false
-}
-
-function checkDoubleSide() {
-    if (document.querySelector("input[name=\'addon-" + dataID + "-sadece-etiket-6[]\']").checked) {
-        disableEtiket()
-    } else {
-        activeEtiket()
-    }
-}
-
-function addListenerForApplyableMaterials() {
-    document
-        .querySelector("input[name=\'addon-" + dataID + "-sadece-etiket-6[]\']")
-        .addEventListener("click", (e) => {
-            reflectorAndPhotolumenOnlyPVCOrSACOrEtiket(e.srcElement.name)
-            checkSac()
-            checkEtiket()
-			disableDoubleSide()
-        }, {
-            passive: false
-        })
-
-    document
-        .querySelector("input[name=\'addon-" + dataID + "-sac-uzerine-uygulama-4[]\']")
-        .addEventListener("click", (e) => {
-            reflectorAndPhotolumenOnlyPVCOrSACOrEtiket(e.srcElement.name)
-            checkSac()
-        }, {
-            passive: false
-        })
-
-    document
-        .querySelector("input[name=\'addon-" + dataID + "-pvc-uzerine-uygulama-5[]\']")
-        .addEventListener("click", (e) => {
-            reflectorAndPhotolumenOnlyPVCOrSACOrEtiket(e.srcElement.name)
-        }, {
-            passive: false
-        })
-
-    document
-        .querySelectorAll("input[name=\'addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-3[]\']")
-        .forEach(e => e.addEventListener("click", (e) => {
-            checkLamination()
-        }, {
-            passive: false
-        }))
-
-    document.querySelectorAll("input[name=\'addon-" + dataID + "-cift-yon-baski-secenegi-7[]\']")
-        .forEach(e => e.addEventListener("click", (e) => {
-            checkDoubleSide()
-			disableEtiket()
-        }, {
-            passive: false
-        }))
-}
-
-function removeListenerForApplyableMaterials() {
-    document
-        .querySelector("input[name=\'addon-" + dataID + "-sadece-etiket-6[]\']")
-        .addEventListener("click", (e) => {
-            reflectorAndPhotolumenOnlyPVCOrSACOrEtiket(e.srcElement.name)
-        }, {
-            passive: true
-        });
-
-    document
-        .querySelector("input[name=\'addon-" + dataID + "-sac-uzerine-uygulama-4[]\']")
-        .addEventListener("click", (e) => {
-            reflectorAndPhotolumenOnlyPVCOrSACOrEtiket(e.srcElement.name)
-        }, {
-            passive: true
-        });
-
-    document
-        .querySelector("input[name=\'addon-" + dataID + "-pvc-uzerine-uygulama-5[]\']")
-        .addEventListener("click", (e) => {
-            reflectorAndPhotolumenOnlyPVCOrSACOrEtiket(e.srcElement.name)
-        }, {
-            passive: true
-        });
-}
-
 function change(iconID) {
     if (document.getElementById(iconID).className == "icon-angle-up") {
         document.getElementById(iconID).className = "icon-angle-down";
     } else {
         document.getElementById(iconID).className = "icon-angle-up";
     }
+}
+
+var applyInputList = {
+    "sac": `addon-${dataID}-sac-uzerine-uygulama-4[]`,
+    "etiket": `addon-${dataID}-sadece-etiket-6[]`,
+    "pvc": `addon-${dataID}-pvc-uzerine-uygulama-5[]`,
+    "laminasyon": `addon-${dataID}-laminasyon-koruyucu-yuzey-kaplama-3[]`,
+    "cift": `addon-${dataID}-cift-yon-baski-secenegi-7[]`,
+};
+
+var chooseInputObject = {
+    pvc: {
+        "etiket": false,
+        "sac": false,
+        "laminasyon": true,
+        "cift": true,
+    },
+    sac: {
+        "etiket": false,
+        "pvc": false,
+        "laminasyon": false,
+        "cift": true,
+    },
+    etiket: {
+        "sac": false,
+        "pvc": false,
+        "laminasyon": false,
+        "cift": false,
+    },
+    laminasyon: {
+        "etiket": false,
+        "sac": false,
+        "pvc": true,
+        "cift": true,
+    },
+    cift: {
+        "etiket": false,
+        "sac": true,
+        "pvc": true,
+        "laminasyon": true,
+    },
+};
+
+function activateTriggerUpdateOptions() {
+    document
+            .querySelectorAll("input[name^=\'addon-" + dataID + "-\']")
+            .forEach(input => input.addEventListener("click", triggerUpdateOptions));
+}
+
+function triggerUpdateOptions(event) {
+    const clickedElement = event.target;
+    const elementName = clickedElement.name;
+
+    const choosenDataType = Object.keys(chooseInputObject).find(key =>
+        elementName.includes(key)
+    );
+    console.log({ choosenDataType })
+    updateOptions(choosenDataType);
+}
+
+function updateOptions(choosenDataType) {
+    Object.entries(chooseInputObject[choosenDataType]).forEach(entry => {
+        const [key, value] = entry;
+        console.log({ key }, { value })
+        const inputName = applyInputList[key];
+        const inputElements = document.querySelectorAll(`input[name=\'${inputName}\']`);
+        console.log({ inputName }, { inputElements })
+        if (!value) {
+            inputElements.forEach(e => e.checked = false)
+        }
+    });
 }
