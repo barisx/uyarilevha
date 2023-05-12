@@ -1,20 +1,3 @@
-function findInputElement(dataID, regexPattern) {
-    // Get all the input elements that match the regular expression pattern
-    const regex = new RegExp(regexPattern);
-    const inputElements = document.querySelectorAll("input[name^='addon-'][name$='[]']");
-
-    // Find the first input element that matches the pattern and return it
-    for (let i = 0; i < inputElements.length; i++) {
-        const name = inputElements[i].getAttribute('name');
-        if (regex.test(name) && name.includes(`addon-${dataID}-`)) {
-            return inputElements[i];
-        }
-    }
-
-    // If no input element was found, return null
-    return null;
-}
-
 document
     .querySelector("select#pa_olculer")
     .addEventListener("change", (event) => {
@@ -168,64 +151,6 @@ function openAllApplyableMaterials() {
     Object.values(applyClassList).forEach(element => document.querySelector(element).hidden = false)
 }
 
-
-var applyClassList = {
-    "sac": "div.wc-pao-addon-sac-uzerine-uygulama",
-    "etiket": "div.wc-pao-addon-etiket",
-    "pvc": "div.wc-pao-addon-pvc-uzerine-uygulama",
-    "laminasyon": "div.wc-pao-addon-laminasyon-koruyucu-yuzey-kaplama",
-    "doubleside": "div.wc-pao-addon-cift-yon-baski-secenegi"
-}
-
-// var sizeClassComponents = {
-//     "8x12": [`p.wc-pao-addon-${dataID}-cift-yon-baski-secenegi-${findInputElement(dataID, "\\d+")}-0`, `p.wc-pao-addon-${dataID}-laminasyon-koruyucu-yuzey-kaplama-${findInputElement(dataID, "\\d+")}-0`],
-//     "12x17": [`p.wc-pao-addon-${dataID}-cift-yon-baski-secenegi-${findInputElement(dataID, "\\d+")}-1`, `p.wc-pao-addon-${dataID}-laminasyon-koruyucu-yuzey-kaplama-${findInputElement(dataID, "\\d+")}-1`],
-//     "17x25": [`p.wc-pao-addon-${dataID}-cift-yon-baski-secenegi-${findInputElement(dataID, "\\d+")}-2`, `p.wc-pao-addon-${dataID}-laminasyon-koruyucu-yuzey-kaplama-${findInputElement(dataID, "\\d+")}-2`],
-//     "25x35": [`p.wc-pao-addon-${dataID}-cift-yon-baski-secenegi-${findInputElement(dataID, "\\d+")}-3`, `p.wc-pao-addon-${dataID}-laminasyon-koruyucu-yuzey-kaplama-${findInputElement(dataID, "\\d+")}-3`, `p.wc-pao-addon-${dataID}-sac-uzerine-uygulama-${findInputElement(dataID, "\\d+")}-0`],
-//     "35x50": [`p.wc-pao-addon-${dataID}-cift-yon-baski-secenegi-${findInputElement(dataID, "\\d+")}-4`, `p.wc-pao-addon-${dataID}-laminasyon-koruyucu-yuzey-kaplama-${findInputElement(dataID, "\\d+")}-4`, `p.wc-pao-addon-${dataID}-sac-uzerine-uygulama-${findInputElement(dataID, "\\d+")}-1`],
-//     "50x70": [`p.wc-pao-addon-${dataID}-cift-yon-baski-secenegi-${findInputElement(dataID, "\\d+")}-5`, `p.wc-pao-addon-${dataID}-laminasyon-koruyucu-yuzey-kaplama-${findInputElement(dataID, "\\d+")}-5`, `p.wc-pao-addon-${dataID}-sac-uzerine-uygulama-${findInputElement(dataID, "\\d+")}-2`],
-//     "70x100": [`p.wc-pao-addon-${dataID}-cift-yon-baski-secenegi-${findInputElement(dataID, "\\d+")}-6`, `p.wc-pao-addon-${dataID}-laminasyon-koruyucu-yuzey-kaplama-${findInputElement(dataID, "\\d+")}-6`, `p.wc-pao-addon-${dataID}-sac-uzerine-uygulama-${findInputElement(dataID, "\\d+")}-3`],
-// };
-
-// function updateSizes() {
-//     if (!choosenSize) {
-//         closeAllApplyableMaterials()
-//     } else {
-//         openAllApplyableMaterials()
-//     }
-//     Object.values(sizeClassComponents).forEach(e => {
-//         for (var i = 0; i < e.length; i++) {
-//             const inputElement = findInputElement(dataID, "\\d+");
-//             if (inputElement) {
-//                 const componentNumber = inputElement.value;
-//                 const selector = e[i].replace(/\d+/, componentNumber);
-//                 document.querySelector(selector).hidden = true;
-//             }
-//         }
-//     })
-//     Object.values(sizeClassComponents[choosenMaterialSize()]).forEach((element) => {
-//         const inputElement = findInputElement(dataID, "\\d+");
-//         if (inputElement) {
-//             const componentNumber = inputElement.value;
-//             const selector = element.replace(/\d+/, componentNumber);
-//             document.querySelector(selector).hidden = false;
-//         }
-//     });
-// }
-
-
-
-
-var sizeClassComponents = {
-    "8x12": ["p.wc-pao-addon-" + dataID + "-cift-yon-baski-secenegi-7-0", "p.wc-pao-addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-3-0"],
-    "12x17": ["p.wc-pao-addon-" + dataID + "-cift-yon-baski-secenegi-7-1", "p.wc-pao-addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-3-1"],
-    "17x25": ["p.wc-pao-addon-" + dataID + "-cift-yon-baski-secenegi-7-2", "p.wc-pao-addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-3-2"],
-    "25x35": ["p.wc-pao-addon-" + dataID + "-cift-yon-baski-secenegi-7-3", "p.wc-pao-addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-3-3", "p.wc-pao-addon-" + dataID + "-sac-uzerine-uygulama-4-0"],
-    "35x50": ["p.wc-pao-addon-" + dataID + "-cift-yon-baski-secenegi-7-4", "p.wc-pao-addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-3-4", "p.wc-pao-addon-" + dataID + "-sac-uzerine-uygulama-4-1"],
-    "50x70": ["p.wc-pao-addon-" + dataID + "-cift-yon-baski-secenegi-7-5", "p.wc-pao-addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-3-5", "p.wc-pao-addon-" + dataID + "-sac-uzerine-uygulama-4-2"],
-    "70x100": ["p.wc-pao-addon-" + dataID + "-cift-yon-baski-secenegi-7-6", "p.wc-pao-addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-3-6", "p.wc-pao-addon-" + dataID + "-sac-uzerine-uygulama-4-3"],
-};
-
 function updateSizes() {
     if (!choosenSize) {
         closeAllApplyableMaterials()
@@ -239,6 +164,23 @@ function updateSizes() {
     })
     Object.values(sizeClassComponents[choosenMaterialSize()]).forEach((element) => document.querySelector(element).hidden = false)
 }
+var applyClassList = {
+    "sac": "div.wc-pao-addon-sac-uzerine-uygulama",
+    "etiket": "div.wc-pao-addon-etiket",
+    "pvc": "div.wc-pao-addon-pvc-uzerine-uygulama",
+    "laminasyon": "div.wc-pao-addon-laminasyon-koruyucu-yuzey-kaplama",
+    "doubleside": "div.wc-pao-addon-cift-yon-baski-secenegi"
+}
+
+var sizeClassComponents = {
+    "8x12": ["p.wc-pao-addon-" + dataID + "-cift-yon-baski-secenegi-7-0", "p.wc-pao-addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-3-0", "p.wc-pao-addon-" + dataID + "-etiket-6-0"],
+    "12x17": ["p.wc-pao-addon-" + dataID + "-cift-yon-baski-secenegi-7-1", "p.wc-pao-addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-3-1", "p.wc-pao-addon-" + dataID + "-etiket-6-1"],
+    "17x25": ["p.wc-pao-addon-" + dataID + "-cift-yon-baski-secenegi-7-2", "p.wc-pao-addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-3-2", "p.wc-pao-addon-" + dataID + "-etiket-6-2"],
+    "25x35": ["p.wc-pao-addon-" + dataID + "-cift-yon-baski-secenegi-7-3", "p.wc-pao-addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-3-3", "p.wc-pao-addon-" + dataID + "-sac-uzerine-uygulama-4-0", "p.wc-pao-addon-" + dataID + "-etiket-6-3"],
+    "35x50": ["p.wc-pao-addon-" + dataID + "-cift-yon-baski-secenegi-7-4", "p.wc-pao-addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-3-4", "p.wc-pao-addon-" + dataID + "-sac-uzerine-uygulama-4-1", "p.wc-pao-addon-" + dataID + "-etiket-6-4"],
+    "50x70": ["p.wc-pao-addon-" + dataID + "-cift-yon-baski-secenegi-7-5", "p.wc-pao-addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-3-5", "p.wc-pao-addon-" + dataID + "-sac-uzerine-uygulama-4-2", "p.wc-pao-addon-" + dataID + "-etiket-6-5"],
+    "70x100": ["p.wc-pao-addon-" + dataID + "-cift-yon-baski-secenegi-7-6", "p.wc-pao-addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-3-6", "p.wc-pao-addon-" + dataID + "-sac-uzerine-uygulama-4-3", "p.wc-pao-addon-" + dataID + "-etiket-6-6"],
+};
 
 // feature.js end
 
@@ -308,13 +250,13 @@ function checkSac() {
 
 function disableDoubleSide() {
     // addon-302-cift-yon-baski-secenegi-7[]
-    document.querySelectorAll("input[name=\'addon-" + dataID + "-cift-yon-baski-secenegi-7[]\']").forEach(e => { e.checked = false })
-    document.querySelectorAll("input[name=\'addon-" + dataID + "-cift-yon-baski-secenegi-7[]\']").forEach(e => { e.disable = true })
+    document.querySelectorAll("input[name=\'addon-" + dataID + "-cift-yon-baski-secenegi-7[]\']").forEach(e => {e.checked = false})
+    document.querySelectorAll("input[name=\'addon-" + dataID + "-cift-yon-baski-secenegi-7[]\']").forEach(e => {e.disable = true})
 }
 
 function activeDoubleSide() {
     // addon-302-cift-yon-baski-secenegi-7[]
-    document.querySelectorAll("input[name=\'addon-" + dataID + "-cift-yon-baski-secenegi-7[]\']").forEach(e => { e.disable = false })
+    document.querySelectorAll("input[name=\'addon-" + dataID + "-cift-yon-baski-secenegi-7[]\']").forEach(e => {e.disable = false})
 }
 
 function checkEtiket() {
@@ -351,7 +293,7 @@ function addListenerForApplyableMaterials() {
             reflectorAndPhotolumenOnlyPVCOrSACOrEtiket(e.srcElement.name)
             checkSac()
             checkEtiket()
-            disableDoubleSide()
+			disableDoubleSide()
         }, {
             passive: false
         })
@@ -384,7 +326,7 @@ function addListenerForApplyableMaterials() {
     document.querySelectorAll("input[name=\'addon-" + dataID + "-cift-yon-baski-secenegi-7[]\']")
         .forEach(e => e.addEventListener("click", (e) => {
             checkDoubleSide()
-            disableEtiket()
+			disableEtiket()
         }, {
             passive: false
         }))
