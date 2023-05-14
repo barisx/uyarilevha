@@ -1,3 +1,10 @@
+const selectElement = document.querySelector("select#pa_malzeme-turu");
+const defaultValue = selectElement.defaultValue;
+
+function setMaterialTypeDefault() {
+    document.querySelector("select#pa_malzeme-turu").value = defaultValue;
+}
+
 document
     .querySelector("select#pa_olculer")
     .addEventListener("change", (event) => {
@@ -45,8 +52,9 @@ window
         document.querySelector("a.reset_variations").addEventListener("click", () => {
             resetLanguage();
             resetDirection();
-            specifications()
-            closeAllApplyableMaterials()
+            specifications();
+            closeAllApplyableMaterials();
+            setMaterialTypeDefault();
         })
     });
 
