@@ -3,11 +3,17 @@ const defaultMaterialValue = document.querySelector("select#pa_malzeme-turu").va
 const defaultSizeValue = document.querySelector("select#pa_olculer").value;
 
 function setMaterialTypeDefault() {
-    document.querySelector("select#pa_malzeme-turu").value = defaultMaterialValue;
+    const selectElement = document.querySelector("#pa_malzeme-turu");
+    const optionToSelect = selectElement.querySelector(`option[value=\"${defaultMaterialValue}\"]`);
+    optionToSelect.selected = true;
+    selectElement.dispatchEvent(new Event("change", { bubbles: true }));
 }
 
 function setMaterialSizeDefault() {
-    document.querySelector("select#pa_olculer").value = defaultSizeValue;
+    const selectElement = document.querySelector("select#pa_olculer");
+    const optionToSelect = selectElement.querySelector(`option[value=\"${defaultSizeValue}\"]`);
+    optionToSelect.selected = true;
+    optionToSelect.dispatchEvent(new Event("click", { bubbles: true }));
 }
 
 document
@@ -15,9 +21,9 @@ document
     .addEventListener("change", (event) => {
         document.querySelector("div.wc-pao-addons-container").querySelectorAll("input[type=checkbox]").forEach(e => e.checked = false)
         choosenSize = choosenMaterialSize()
-        chooseClassObject[choosenDataType]["sac"] = choosenDataType === "reflektorlu" || choosenDataType == "fotolumen" ?
-            validSacSize() :
-            chooseClassObject[choosenDataType]["sac"]
+        chooseClassObject[choosenDataType]["sac"] = choosenDataType === "reflektorlu" || choosenDataType == "fotolumen"
+            ? validSacSize()
+            : chooseClassObject[choosenDataType]["sac"]
         updateSizes();
         updateChooses();
         activateTriggerUpdateOptions();
@@ -48,18 +54,25 @@ document
     });
 
 
+function resetAll() {
+    resetLanguage();
+    resetDirection();
+    specifications();
+    closeAllApplyableMaterials();
+    setTimeout(setMaterialTypeDefault, 500);
+    setTimeout(setMaterialSizeDefault, 500);
+    setTimeout(document.querySelector("select#pa_malzeme-turu").dispatchEvent(new Event("change")), 1000);
+    setTimeout(document.querySelector("select#pa_olculer").dispatchEvent(new Event("change")), 1000);
+    setTimeout(setMaterialTypeDefault, 2000);
+    setTimeout(setMaterialSizeDefault, 2000);
+}
 
 window
     .addEventListener("load", () => {
         updateSizes();
         updateChooses();
         document.querySelector("a.reset_variations").addEventListener("click", () => {
-            resetLanguage();
-            resetDirection();
-            specifications();
-            closeAllApplyableMaterials();
-            setMaterialTypeDefault();
-            setMaterialSizeDefault();
+            resetAll();
         })
     });
 
@@ -172,7 +185,7 @@ var chooseClassObject = {
 
 function updateChooses() {
     Object.entries(chooseClassObject[choosenDataType]).forEach(dict => {
-        const [ key, value ] = dict;
+        const [key, value] = dict;
         document.querySelector(applyClassList[key]).hidden = !value;
     })
 }
