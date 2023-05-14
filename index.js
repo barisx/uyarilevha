@@ -98,20 +98,26 @@ var chooseClassObject = {
         "pvc": false,
         "laminasyon": true,
         "doubleside": true,
+        "reflektordoubleside": false,
+        "fotolumendoubleside": false,
     },
     fotolumen: {
         "etiket": true,
         "sac": validSacSize(),
         "pvc": true,
         "laminasyon": true,
-        "doubleside": true,
+        "doubleside": false,
+        "reflektordoubleside": false,
+        "fotolumendoubleside": true,
     },
     reflektorlu: {
         "etiket": true,
         "sac": validSacSize(),
         "pvc": true,
         "laminasyon": true,
-        "doubleside": true,
+        "doubleside": false,
+        "reflektordoubleside": true,
+        "fotolumendoubleside": false,
     },
     dekota: {
         "etiket": false,
@@ -119,6 +125,8 @@ var chooseClassObject = {
         "pvc": false,
         "laminasyon": true,
         "doubleside": true,
+        "reflektordoubleside": false,
+        "fotolumendoubleside": false,
     },
     sac: {
         "etiket": false,
@@ -126,6 +134,8 @@ var chooseClassObject = {
         "pvc": false,
         "laminasyon": false,
         "doubleside": true,
+        "reflektordoubleside": false,
+        "fotolumendoubleside": false,
     },
     etiket: {
         "etiket": false,
@@ -133,6 +143,8 @@ var chooseClassObject = {
         "pvc": false,
         "laminasyon": false,
         "doubleside": false,
+        "reflektordoubleside": false,
+        "fotolumendoubleside": false,
     },
     magnet: {
         "etiket": false,
@@ -140,6 +152,8 @@ var chooseClassObject = {
         "pvc": false,
         "laminasyon": true,
         "doubleside": false,
+        "reflektordoubleside": false,
+        "fotolumendoubleside": false,
     },
 }
 
