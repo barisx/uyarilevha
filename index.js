@@ -173,7 +173,9 @@ var applyClassList = {
     "etiket": "div.wc-pao-addon-sadece-etiket",
     "pvc": "div.wc-pao-addon-pvc-uzerine-uygulama",
     "laminasyon": "div.wc-pao-addon-laminasyon-koruyucu-yuzey-kaplama",
-    "doubleside": "div.wc-pao-addon-cift-yon-baski-secenegi"
+    "doubleside": "div.wc-pao-addon-cift-yon-baski-secenegi",
+    "reflektordoubleside": "div.wc-pao-addon-reflektor-cift-yon",
+    "fotolumendoubleside": "div.wc-pao-addon-fotolumen-cift-yon"
 }
 
 var sizeClassComponents = {
