@@ -158,7 +158,11 @@ var chooseClassObject = {
 }
 
 function updateChooses() {
-    Object.entries(chooseClassObject[choosenDataType]).forEach(dict => document.querySelector(applyClassList[dict[0]]).hidden = !dict[1])
+    Object.entries(chooseClassObject[choosenDataType]).forEach(dict => {
+        const [ key, value ] = dict;
+        console.log(key, value)
+        document.querySelector(applyClassList[key]).hidden = !value;
+    })
 }
 
 function closeAllApplyableMaterials() {
