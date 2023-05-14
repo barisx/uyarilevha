@@ -1,8 +1,13 @@
-const selectElement = document.querySelector("select#pa_malzeme-turu");
-const defaultValue = selectElement.defaultValue;
+const defaultMaterialValue = document.querySelector("select#pa_malzeme-turu").value;
+
+const defaultSizeValue = document.querySelector("select#pa_olculer").value;
 
 function setMaterialTypeDefault() {
-    document.querySelector("select#pa_malzeme-turu").value = defaultValue;
+    document.querySelector("select#pa_malzeme-turu").value = defaultMaterialValue;
+}
+
+function setMaterialSizeDefault() {
+    document.querySelector("select#pa_olculer").value = defaultSizeValue;
 }
 
 document
@@ -16,7 +21,6 @@ document
         updateSizes();
         updateChooses();
         activateTriggerUpdateOptions();
-
     });
 
 
@@ -55,6 +59,7 @@ window
             specifications();
             closeAllApplyableMaterials();
             setMaterialTypeDefault();
+            setMaterialSizeDefault();
         })
     });
 
