@@ -267,6 +267,8 @@ var applyInputList = {
     "pvc": `addon-${dataID}-pvc-uzerine-uygulama-5[]`,
     "laminasyon": `addon-${dataID}-laminasyon-koruyucu-yuzey-kaplama-3[]`,
     "cift": `addon-${dataID}-cift-yon-baski-secenegi-7[]`,
+    "fotolumencift": `addon-${dataID}-fotolumen-cift-yon-8[]`,
+    "reflektorcift": `addon-${dataID}-reflektor-cift-yon-9[]`,
 };
 
 var chooseInputObject = {
@@ -275,30 +277,58 @@ var chooseInputObject = {
         "sac": false,
         "laminasyon": true,
         "cift": true,
+        "fotolumencift": true,
+        "reflektorcift": true,
     },
     sac: {
         "etiket": false,
         "pvc": false,
         "laminasyon": false,
         "cift": true,
+        "fotolumencift": true,
+        "reflektorcift": true,
     },
     etiket: {
         "sac": false,
         "pvc": false,
         "laminasyon": false,
         "cift": false,
+        "fotolumencift": false,
+        "reflektorcift": false,
     },
     laminasyon: {
         "etiket": false,
         "sac": false,
         "pvc": true,
         "cift": true,
+        "fotolumencift": true,
+        "reflektorcift": true,
     },
     cift: {
         "etiket": false,
         "sac": true,
         "pvc": true,
         "laminasyon": true,
+        "fotolumencift": false,
+        "reflektorcift": false,
+    },
+    fotolumencift: {
+        "etiket": false,
+        "sac": true,
+        "pvc": true,
+        "laminasyon": true,
+        "cift": false,
+        "fotolumencift": true,
+        "reflektorcift": false,
+    },
+    reflektorcift: {
+        "etiket": false,
+        "sac": true,
+        "pvc": true,
+        "laminasyon": true,
+        "cift": false,
+        "fotolumencift": false,
+        "reflektorcift": true,
     },
 };
 
@@ -313,7 +343,7 @@ function triggerUpdateOptions(event) {
     const elementName = clickedElement.name;
 
     const choosenDataType = Object.keys(chooseInputObject).find(key =>
-        elementName.includes(key)
+        elementName == applyInputList[key]
     );
     console.log({ choosenDataType })
     updateOptions(choosenDataType);
