@@ -46,11 +46,11 @@ document
         resetDirection();
         activateTriggerUpdateOptions();
 
-        if (choosenDataType === "reflektorlu" || choosenDataType === "fotolumen") {
-            addListenerForApplyableMaterials()
-        } else {
-            removeListenerForApplyableMaterials()
-        }
+        // if (choosenDataType === "reflektorlu" || choosenDataType === "fotolumen") {
+        //     addListenerForApplyableMaterials()
+        // } else {
+        //     removeListenerForApplyableMaterials()
+        // }
     });
 
 
@@ -118,68 +118,91 @@ function validSacSize() {
     return ["25x35", "35x50", "50x70", "70x100"].includes(choosenSize)
 }
 var chooseClassObject = {
+    /*
+    
+    "sac": "",
+        "pvc": "",
+        "laminasyon": "",
+        "cift-yon-baski": "",
+        "fotolumen-cift": "",
+        "fotolumen-etiket": "",
+        "reflektor-etiket": "",
+        "reflektor-cift": "",*/
     pvc: {
-        "etiket": false,
         "sac": false,
         "pvc": false,
         "laminasyon": true,
-        "doubleside": true,
-        "reflektordoubleside": false,
-        "fotolumendoubleside": false,
+        "cift-yon-baski": true,
+        "fotolumen-etiket": false,
+        "reflektor-etiket": false,
+        "reflektor-cift": false,
+        "fotolumen-cift": false,
+        "kalin-dekota": false,
     },
     fotolumen: {
-        "etiket": true,
         "sac": validSacSize(),
         "pvc": true,
         "laminasyon": true,
-        "doubleside": false,
-        "reflektordoubleside": false,
-        "fotolumendoubleside": true,
+        "cift-yon-baski": false,
+        "fotolumen-etiket": true,
+        "reflektor-etiket": false,
+        "reflektor-cift": false,
+        "fotolumen-cift": true,
+        "kalin-dekota": true,
     },
     reflektorlu: {
-        "etiket": true,
         "sac": validSacSize(),
         "pvc": true,
         "laminasyon": true,
-        "doubleside": false,
-        "reflektordoubleside": true,
-        "fotolumendoubleside": false,
+        "cift-yon-baski": false,
+        "fotolumen-etiket": false,
+        "reflektor-etiket": true,
+        "reflektor-cift": true,
+        "fotolumen-cift": false,
+        "kalin-dekota": true,
     },
     dekota: {
-        "etiket": false,
         "sac": false,
         "pvc": false,
         "laminasyon": true,
-        "doubleside": true,
-        "reflektordoubleside": false,
-        "fotolumendoubleside": false,
+        "cift-yon-baski": true,
+        "fotolumen-etiket": false,
+        "reflektor-etiket": false,
+        "reflektor-cift": false,
+        "fotolumen-cift": false,
     },
     sac: {
-        "etiket": false,
         "sac": false,
         "pvc": false,
         "laminasyon": false,
-        "doubleside": true,
-        "reflektordoubleside": false,
-        "fotolumendoubleside": false,
+        "cift-yon-baski": true,
+        "fotolumen-etiket": false,
+        "reflektor-etiket": false,
+        "reflektor-cift": false,
+        "fotolumen-cift": false,
+        "kalin-dekota": true,
     },
     etiket: {
-        "etiket": false,
         "sac": false,
         "pvc": false,
         "laminasyon": false,
-        "doubleside": false,
-        "reflektordoubleside": false,
-        "fotolumendoubleside": false,
+        "cift-yon-baski": false,
+        "fotolumen-etiket": false,
+        "reflektor-etiket": false,
+        "reflektor-cift": false,
+        "fotolumen-cift": false,
+        "kalin-dekota": false,
     },
     magnet: {
-        "etiket": false,
         "sac": false,
         "pvc": false,
         "laminasyon": true,
-        "doubleside": false,
-        "reflektordoubleside": false,
-        "fotolumendoubleside": false,
+        "cift-yon-baski": false,
+        "fotolumen-etiket": false,
+        "reflektor-etiket": false,
+        "reflektor-cift": false,
+        "fotolumen-cift": false,
+        "kalin-dekota": false,
     },
 }
 
@@ -206,30 +229,77 @@ function updateSizes() {
     }
     Object.values(sizeClassComponents).forEach(e => {
         for (var i = 0; i < e.length; i++) {
-            document.querySelector(e[i]).hidden = true
+            const element = document.querySelector(e[i]);
+            if(element) element.hidden = true;
         }
     })
-    Object.values(sizeClassComponents[choosenMaterialSize()]).forEach((element) => document.querySelector(element).hidden = false)
-}
-var applyClassList = {
-    "sac": "div.wc-pao-addon-sac-uzerine-uygulama",
-    "etiket": "div.wc-pao-addon-sadece-etiket",
-    "pvc": "div.wc-pao-addon-pvc-uzerine-uygulama",
-    "laminasyon": "div.wc-pao-addon-laminasyon-koruyucu-yuzey-kaplama",
-    "doubleside": "div.wc-pao-addon-cift-yon-baski-secenegi",
-    "reflektordoubleside": "div.wc-pao-addon-reflektor-cift-yon",
-    "fotolumendoubleside": "div.wc-pao-addon-fotolumen-cift-yon"
+    Object.values(sizeClassComponents[choosenMaterialSize()]).forEach((element) => {
+        const currentElement = document.querySelector(element);
+        if(currentElement) currentElement.hidden = false;
+    })
 }
 
-var sizeClassComponents = {
-    "8x12": ["p.wc-pao-addon-" + dataID + "-cift-yon-baski-secenegi-7-0", "p.wc-pao-addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-3-0", "p.wc-pao-addon-" + dataID + "-sadece-etiket-6-0", "p.wc-pao-addon-" + dataID + "-fotolumen-cift-yon-8-0", "p.wc-pao-addon-" + dataID + "-reflektor-cift-yon-9-0"],
-    "12x17": ["p.wc-pao-addon-" + dataID + "-cift-yon-baski-secenegi-7-1", "p.wc-pao-addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-3-1", "p.wc-pao-addon-" + dataID + "-sadece-etiket-6-1", "p.wc-pao-addon-" + dataID + "-fotolumen-cift-yon-8-1", "p.wc-pao-addon-" + dataID + "-reflektor-cift-yon-9-1"],
-    "17x25": ["p.wc-pao-addon-" + dataID + "-cift-yon-baski-secenegi-7-2", "p.wc-pao-addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-3-2", "p.wc-pao-addon-" + dataID + "-sadece-etiket-6-2", "p.wc-pao-addon-" + dataID + "-fotolumen-cift-yon-8-2", "p.wc-pao-addon-" + dataID + "-reflektor-cift-yon-9-2"],
-    "25x35": ["p.wc-pao-addon-" + dataID + "-cift-yon-baski-secenegi-7-3", "p.wc-pao-addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-3-3", "p.wc-pao-addon-" + dataID + "-sac-uzerine-uygulama-4-0", "p.wc-pao-addon-" + dataID + "-sadece-etiket-6-3", "p.wc-pao-addon-" + dataID + "-fotolumen-cift-yon-8-3", "p.wc-pao-addon-" + dataID + "-reflektor-cift-yon-9-3"],
-    "35x50": ["p.wc-pao-addon-" + dataID + "-cift-yon-baski-secenegi-7-4", "p.wc-pao-addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-3-4", "p.wc-pao-addon-" + dataID + "-sac-uzerine-uygulama-4-1", "p.wc-pao-addon-" + dataID + "-sadece-etiket-6-4", "p.wc-pao-addon-" + dataID + "-fotolumen-cift-yon-8-4", "p.wc-pao-addon-" + dataID + "-reflektor-cift-yon-9-4"],
-    "50x70": ["p.wc-pao-addon-" + dataID + "-cift-yon-baski-secenegi-7-5", "p.wc-pao-addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-3-5", "p.wc-pao-addon-" + dataID + "-sac-uzerine-uygulama-4-2", "p.wc-pao-addon-" + dataID + "-sadece-etiket-6-5", "p.wc-pao-addon-" + dataID + "-fotolumen-cift-yon-8-5", "p.wc-pao-addon-" + dataID + "-reflektor-cift-yon-9-5"],
-    "70x100": ["p.wc-pao-addon-" + dataID + "-cift-yon-baski-secenegi-7-6", "p.wc-pao-addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-3-6", "p.wc-pao-addon-" + dataID + "-sac-uzerine-uygulama-4-3", "p.wc-pao-addon-" + dataID + "-sadece-etiket-6-6", "p.wc-pao-addon-" + dataID + "-fotolumen-cift-yon-8-6", "p.wc-pao-addon-" + dataID + "-reflektor-cift-yon-9-6"],
-};
+var applyClassList = {
+    "sac": "div.wc-pao-addon-sac-uzerine-uygulama",
+    "pvc": "div.wc-pao-addon-pvc-uzerine-uygulama",
+    "laminasyon": "div.wc-pao-addon-laminasyon-koruyucu-yuzey-kaplama",
+    "cift-yon-baski": "div.wc-pao-addon-cift-yon-baski-secenegi",
+    "reflektor-cift": "div.wc-pao-addon-reflektor-cift-yon",
+    "fotolumen-cift": "div.wc-pao-addon-fotolumen-cift-yon",
+    "reflektor-etiket": "div.wc-pao-addon-sadece-reflektor-etiket",
+    "fotolumen-etiket": "div.wc-pao-addon-sadece-fotolumen-etiket",
+    "kalin-dekota": "div.wc-pao-addon-kalin-dekota-4-6mm",
+}
+
+function createSizeClassComponents(components) {
+    var sizeClassComponents = {};
+
+    sizeClassComponents["8x12"] = components.map(function (component) {
+        return component + "0";
+    });
+
+    sizeClassComponents["12x17"] = components.map(function (component) {
+        return component + "1";
+    });
+
+    sizeClassComponents["17x25"] = components.map(function (component) {
+        return component + "2";
+    });
+
+    sizeClassComponents["25x35"] = components.map(function (component) {
+        return component + "3";
+    });
+
+    sizeClassComponents["35x50"] = components.map(function (component) {
+        return component + "4";
+    });
+
+    sizeClassComponents["50x70"] = components.map(function (component) {
+        return component + "5";
+    });
+
+    sizeClassComponents["70x100"] = components.map(function (component) {
+        return component + "6";
+    });
+
+
+    return sizeClassComponents;
+}
+
+// Usage example
+var components = [
+    "p.wc-pao-addon-" + dataID + "-kalin-dekota-4-6mm-3-",
+    "p.wc-pao-addon-" + dataID + "-laminasyon-koruyucu-yuzey-kaplama-4-",
+    "p.wc-pao-addon-" + dataID + "-sac-uzerine-uygulama-5-",
+    "p.wc-pao-addon-" + dataID + "-pvc-uzerine-uygulama-6-",
+    "p.wc-pao-addon-" + dataID + "-sadece-fotolumen-etiket-7-",
+    "p.wc-pao-addon-" + dataID + "-sadece-reflektor-etiket-8-",
+    "p.wc-pao-addon-" + dataID + "-cift-yon-baski-secenegi-9-",
+    "p.wc-pao-addon-" + dataID + "-fotolumen-cift-yon-10-",
+    "p.wc-pao-addon-" + dataID + "-reflektor-cift-yon-11-",
+];
+
+var sizeClassComponents = createSizeClassComponents(components);
 
 // feature.js end
 
@@ -249,7 +319,7 @@ function specifications() {
 function reflectorAndPhotolumenOnlyPVCOrSACOrEtiket(selectedMaterial) {
     document.querySelector("input[name=\'addon-" + dataID + "-sac-uzerine-uygulama-4[]\']").checked = false
     document.querySelector("input[name=\'addon-" + dataID + "-pvc-uzerine-uygulama-5[]\']").checked = false
-    document.querySelector("input[name=\'addon-" + dataID + "-sadece-etiket-6[]\']").checked = false
+    document.querySelector("input[name=\'addon-" + dataID + "-sadece-fotolumen-etiket-6[]\']").checked = false
     document.querySelector("input[name=\"" + selectedMaterial + "\"]").checked = true
 }
 
@@ -261,74 +331,133 @@ function change(iconID) {
     }
 }
 
-var applyInputList = {
-    "sac": `addon-${dataID}-sac-uzerine-uygulama-4[]`,
-    "etiket": `addon-${dataID}-sadece-etiket-6[]`,
-    "pvc": `addon-${dataID}-pvc-uzerine-uygulama-5[]`,
-    "laminasyon": `addon-${dataID}-laminasyon-koruyucu-yuzey-kaplama-3[]`,
-    "cift": `addon-${dataID}-cift-yon-baski-secenegi-7[]`,
-    "fotolumencift": `addon-${dataID}-fotolumen-cift-yon-8[]`,
-    "reflektorcift": `addon-${dataID}-reflektor-cift-yon-9[]`,
-};
+function convertToApplyInputList(components) {
+    var applyInputList = {
+        "sac": "",
+        "etiket": "",
+        "pvc": "",
+        "laminasyon": "",
+        "cift-yon-baski": "",
+        "fotolumen-cift": "",
+        "reflektor-cift": "",
+        "fotolumen-etiket": "",
+        "reflektor-etiket": "",
+        "kalin-dekota": "",
+    };
+
+    components.forEach(function (component) {
+        var componentName = component.split("pao-")[1]; // Extract the component name after splitting
+        componentName = componentName.slice(0, -1); // Remove the last character
+
+        Object.keys(applyInputList).forEach(e => {
+            if (componentName.includes(e)) applyInputList[e] = componentName + "[]"
+        });
+    });
+
+    return applyInputList;
+}
+
+var applyInputList = convertToApplyInputList(components);
 
 var chooseInputObject = {
-    pvc: {
+    "pvc": {
         "etiket": false,
         "sac": false,
         "laminasyon": true,
-        "cift": true,
-        "fotolumencift": true,
-        "reflektorcift": true,
+        "cift-yon-baski": true,
+        "fotolumen-cift": true,
+        "reflektor-cift": true,
+        "fotolumen-etiket": true,
+        "reflektor-etiket": true,
+        "kalin-dekota": false,
     },
-    sac: {
+    "sac": {
         "etiket": false,
         "pvc": false,
         "laminasyon": false,
-        "cift": true,
-        "fotolumencift": true,
-        "reflektorcift": true,
+        "cift-yon-baski": true,
+        "fotolumen-cift": true,
+        "reflektor-cift": true,
+        "kalin-dekota": false,
     },
-    etiket: {
+    "laminasyon": {
+        "etiket": false,
+        "sac": false,
+        "pvc": true,
+        "cift-yon-baski": true,
+        "fotolumen-cift": true,
+        "reflektor-cift": true,
+        "fotolumen-etiket": false,
+        "reflektor-etiket": false,
+        "kalin-dekota": true,
+    },
+    "cift-yon-baski": {
+        "etiket": false,
+        "sac": true,
+        "pvc": true,
+        "laminasyon": true,
+        "fotolumen-cift": false,
+        "reflektor-cift": false,
+        "fotolumen-etiket": false,
+        "reflektor-etiket": false,
+    },
+    "fotolumen-cift": {
+        "etiket": false,
+        "sac": true,
+        "pvc": true,
+        "laminasyon": true,
+        "cift-yon-baski": false,
+        "fotolumen-cift": true,
+        "reflektor-cift": false,
+        "fotolumen-etiket": false,
+        "reflektor-etiket": false,
+        "kalin-dekota": false,
+    },
+    "reflektor-cift": {
+        "etiket": false,
+        "sac": true,
+        "pvc": true,
+        "laminasyon": true,
+        "cift-yon-baski": false,
+        "fotolumen-cift": false,
+        "reflektor-cift": true,
+        "fotolumen-etiket": false,
+        "reflektor-etiket": false,
+        "kalin-dekota": false,
+    },
+    "fotolumen-etiket": {
+        "sac": true,
+        "pvc": true,
+        "laminasyon": false,
+        "cift-yon-baski": false,
+        "fotolumen-cift": false,
+        "reflektor-cift": false,
+        "fotolumen-etiket": true,
+        "reflektor-etiket": false,
+        "kalin-dekota": false,
+    },
+    "reflektor-etiket": {
+        "sac": true,
+        "pvc": true,
+        "laminasyon": false,
+        "cift-yon-baski": false,
+        "fotolumen-cift": false,
+        "reflektor-cift": false,
+        "fotolumen-etiket": false,
+        "reflektor-etiket": true,
+        "kalin-dekota": false,
+    },
+    "kalin-dekota": {
+        "etiket": false,
         "sac": false,
         "pvc": false,
-        "laminasyon": false,
-        "cift": false,
-        "fotolumencift": false,
-        "reflektorcift": false,
-    },
-    laminasyon: {
-        "etiket": false,
-        "sac": false,
-        "pvc": true,
-        "cift": true,
-        "fotolumencift": true,
-        "reflektorcift": true,
-    },
-    cift: {
-        "etiket": false,
-        "sac": true,
-        "pvc": true,
         "laminasyon": true,
-        "fotolumencift": false,
-        "reflektorcift": false,
-    },
-    fotolumencift: {
-        "etiket": false,
-        "sac": true,
-        "pvc": true,
-        "laminasyon": true,
-        "cift": false,
-        "fotolumencift": true,
-        "reflektorcift": false,
-    },
-    reflektorcift: {
-        "etiket": false,
-        "sac": true,
-        "pvc": true,
-        "laminasyon": true,
-        "cift": false,
-        "fotolumencift": false,
-        "reflektorcift": true,
+        "cift-yon-baski": true,
+        "fotolumen-cift": true,
+        "reflektor-cift": true,
+        "fotolumen-etiket": false,
+        "reflektor-etiket": false,
+
     },
 };
 
