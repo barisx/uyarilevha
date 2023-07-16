@@ -372,12 +372,13 @@ var chooseInputObject = {
         "kalin-dekota": false,
     },
     "sac": {
-        "etiket": false,
         "pvc": false,
         "laminasyon": false,
         "cift-yon-baski": true,
         "fotolumen-cift": true,
         "reflektor-cift": true,
+        "fotolumen-etiket": false,
+        "reflektor-etiket": false,
         "kalin-dekota": false,
     },
     "laminasyon": {
@@ -426,7 +427,7 @@ var chooseInputObject = {
         "kalin-dekota": false,
     },
     "fotolumen-etiket": {
-        "sac": true,
+        "sac": false,
         "pvc": true,
         "laminasyon": false,
         "cift-yon-baski": false,
@@ -437,7 +438,7 @@ var chooseInputObject = {
         "kalin-dekota": false,
     },
     "reflektor-etiket": {
-        "sac": true,
+        "sac": false,
         "pvc": true,
         "laminasyon": false,
         "cift-yon-baski": false,
@@ -457,7 +458,6 @@ var chooseInputObject = {
         "reflektor-cift": true,
         "fotolumen-etiket": false,
         "reflektor-etiket": false,
-
     },
 };
 
