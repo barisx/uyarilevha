@@ -3,6 +3,28 @@ const defaultMaterialValue = document.querySelector(
 ).value;
 var productId = "-1";
 
+function getProductId() {
+  // Select the link element
+  const linkElement = document.querySelector(
+    'link[rel="alternate"][type="application/json"]'
+  );
+
+  // Check if the link element exists and get the href attribute
+  if (linkElement) {
+    const href = linkElement.getAttribute("href");
+    // Use a regular expression to extract the product ID from the URL
+    const productIdMatch = href.match(/\/product\/(\d+)/);
+    if (productIdMatch) {
+      productId = productIdMatch[1];
+      console.log("Extracted Product ID:", productId);
+    } else {
+      console.error("Product ID not found in the URL.");
+    }
+  } else {
+    console.error("Link element not found.");
+  }
+}
+
 const defaultSizeValue = document.querySelector("select#pa_olculer").value;
 
 function setMaterialTypeDefault() {
@@ -92,9 +114,7 @@ window.addEventListener("load", () => {
   console.log("Window loaded");
   updateSizes();
   updateChooses();
-  productId = document
-    .querySelectorAll('a[data-title="Add to wishlist"')[0]
-    .getAttribute("data-original-product-id");
+  getProductId();
   console.log("Product ID:", productId);
 
   document.querySelector("a.reset_variations").addEventListener("click", () => {
@@ -239,9 +259,12 @@ var chooseClassObject = {
 };
 
 function updateChooses() {
+  console.log("[243] Updating chooses for:", choosenDataType);
   Object.entries(chooseClassObject[choosenDataType]).forEach((dict) => {
     const [key, value] = dict;
+    console.log("[244] Start Option:", key, "Value:", value);
     document.querySelector(applyClassList[key]).hidden = !value;
+    console.log("[246] End Option:", key, "Value:", value);
   });
 }
 
@@ -258,6 +281,7 @@ function openAllApplyableMaterials() {
 }
 
 function updateSizes() {
+  console.log("[242] Updating sizes for:", choosenSize);
   if (!choosenSize) {
     closeAllApplyableMaterials();
   } else {
@@ -267,12 +291,14 @@ function updateSizes() {
     for (var i = 0; i < e.length; i++) {
       const element = document.querySelector(e[i]);
       if (element) element.hidden = true;
+      console.log("[274] Size:", e[i], "Value:", element?.hidden);
     }
   });
   Object.values(sizeClassComponents[choosenMaterialSize()]).forEach(
     (element) => {
       const currentElement = document.querySelector(element);
       if (currentElement) currentElement.hidden = false;
+      console.log("[281] Size:", element, "Value:", currentElement?.hidden);
     }
   );
 }
