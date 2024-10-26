@@ -59,7 +59,7 @@ document
     choosenSize = choosenMaterialSize();
     chooseClassObject[choosenDataType]["sac"] =
       choosenDataType === "reflektorlu" || choosenDataType == "fotolumen"
-        ? validSacSize()
+        ? validateMetalPlateSize()
         : chooseClassObject[choosenDataType]["sac"];
     updateSizes();
     updateChooses();
@@ -78,7 +78,7 @@ document
     choosenDataType = choosenMaterialType();
     chooseClassObject[choosenDataType]["sac"] =
       choosenDataType === "reflektorlu" || choosenDataType == "fotolumen"
-        ? validSacSize()
+        ? validateMetalPlateSize()
         : chooseClassObject[choosenDataType]["sac"];
     updateSizes();
     updateChooses();
@@ -167,8 +167,18 @@ function choosenMaterialSize() {
 var choosenSize = choosenMaterialSize();
 var choosenDataType = choosenMaterialType();
 
-function validSacSize() {
-  return ["25x35", "35x50", "50x70", "70x100"].includes(choosenSize);
+function validateMetalPlateSize() {
+  return [
+    "25x35",
+    "35x50",
+    "50x70",
+    "70x100",
+    "30x30",
+    "40x40",
+    "50x50",
+    "60x60",
+    "70x70",
+  ].includes(choosenSize);
 }
 var chooseClassObject = {
   /*
@@ -193,7 +203,7 @@ var chooseClassObject = {
     "kalin-dekota": false,
   },
   fotolumen: {
-    sac: validSacSize(),
+    sac: validateMetalPlateSize(),
     pvc: true,
     laminasyon: true,
     "cift-yon-baski": false,
@@ -204,7 +214,7 @@ var chooseClassObject = {
     "kalin-dekota": true,
   },
   reflektorlu: {
-    sac: validSacSize(),
+    sac: validateMetalPlateSize(),
     pvc: true,
     laminasyon: true,
     "cift-yon-baski": false,
@@ -276,9 +286,14 @@ function closeAllApplyableMaterials() {
 }
 
 function openAllApplyableMaterials() {
-  Object.values(applyClassList).forEach(
-    (element) => (document.querySelector(element).hidden = false)
-  );
+  Object.values(applyClassList).forEach((selector) => {
+    const element = document.querySelector(selector);
+    if (element) {
+      element.hidden = false;
+    } else {
+      console.error(`Element not found for selector: ${selector}`);
+    }
+  });
 }
 
 function updateSizes() {
@@ -345,6 +360,27 @@ function createSizeClassComponents(components) {
 
   sizeClassComponents["70x100"] = components.map(function (component) {
     return component + "6";
+  });
+
+  // New sizes added
+  sizeClassComponents["30x30"] = components.map(function (component) {
+    return component + "7";
+  });
+
+  sizeClassComponents["40x40"] = components.map(function (component) {
+    return component + "8";
+  });
+
+  sizeClassComponents["50x50"] = components.map(function (component) {
+    return component + "9";
+  });
+
+  sizeClassComponents["60x60"] = components.map(function (component) {
+    return component + "10";
+  });
+
+  sizeClassComponents["70x70"] = components.map(function (component) {
+    return component + "11";
   });
 
   return sizeClassComponents;
