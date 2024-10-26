@@ -2,6 +2,7 @@ const defaultMaterialValue = document.querySelector(
   "select#pa_malzeme-turu"
 ).value;
 var productId = "-1";
+getProductId();
 
 function getProductId() {
   // Select the link element
