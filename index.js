@@ -124,12 +124,17 @@ window.addEventListener("load", () => {
 });
 
 function resetLanguageWithClassName() {
-  var element = document
+  const elements = document
     .querySelector("div.wc-pao-addon-ilave-dil-secenekleri")
-    .querySelectorAll("a");
-  element[0].classList.add("selected");
-  for (var i = 1; i < element.length; i++) {
-    element[i].classList.remove("selected");
+    ?.querySelectorAll("a");
+  if (elements && elements.length > 0) {
+    elements[0].classList.add("selected");
+    for (let i = 1; i < elements.length; i++) {
+      elements[i].classList.remove("selected");
+    }
+    console.log("Language reset with class name.");
+  } else {
+    console.error("Language elements not found.");
   }
 }
 
@@ -140,12 +145,17 @@ function resetLanguage() {
 }
 
 function resetDirectionWithClassName() {
-  var element = document
+  const elements = document
     .querySelector("div.wc-pao-addon-levha-sekli-istege-bagli")
-    .querySelectorAll("a");
-  element[0].classList.add("selected");
-  for (var i = 1; i < element.length; i++) {
-    element[i].classList.remove("selected");
+    ?.querySelectorAll("a");
+  if (elements && elements.length > 0) {
+    elements[0].classList.add("selected");
+    for (let i = 1; i < elements.length; i++) {
+      elements[i].classList.remove("selected");
+    }
+    console.log("Direction reset with class name.");
+  } else {
+    console.error("Direction elements not found.");
   }
 }
 
@@ -280,9 +290,15 @@ function updateChooses() {
 }
 
 function closeAllApplyableMaterials() {
-  Object.values(applyClassList).forEach(
-    (element) => (document.querySelector(element).hidden = true)
-  );
+  Object.values(applyClassList).forEach((selector) => {
+    const element = document.querySelector(selector);
+    if (element) {
+      element.hidden = true;
+      console.log(`Element hidden for selector: ${selector}`);
+    } else {
+      console.error(`Element not found for selector: ${selector}`);
+    }
+  });
 }
 
 function openAllApplyableMaterials() {
@@ -304,17 +320,25 @@ function updateSizes() {
     openAllApplyableMaterials();
   }
   Object.values(sizeClassComponents).forEach((e) => {
-    for (var i = 0; i < e.length; i++) {
-      const element = document.querySelector(e[i]);
-      if (element) element.hidden = true;
-      console.log("[274] Size:", e[i], "Value:", element?.hidden);
-    }
+    e.forEach((selector) => {
+      const element = document.querySelector(selector);
+      if (element) {
+        element.hidden = true;
+        console.log(`[274] Size: ${selector}, Value: ${element.hidden}`);
+      } else {
+        console.error(`Element not found for selector: ${selector}`);
+      }
+    });
   });
   Object.values(sizeClassComponents[choosenMaterialSize()]).forEach(
-    (element) => {
-      const currentElement = document.querySelector(element);
-      if (currentElement) currentElement.hidden = false;
-      console.log("[281] Size:", element, "Value:", currentElement?.hidden);
+    (selector) => {
+      const currentElement = document.querySelector(selector);
+      if (currentElement) {
+        currentElement.hidden = false;
+        console.log(`[281] Size: ${selector}, Value: ${currentElement.hidden}`);
+      } else {
+        console.error(`Element not found for selector: ${selector}`);
+      }
     }
   );
 }
