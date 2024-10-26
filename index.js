@@ -281,11 +281,15 @@ var chooseClassObject = {
 
 function updateChooses() {
   console.log("[243] Updating chooses for:", choosenDataType);
-  Object.entries(chooseClassObject[choosenDataType]).forEach((dict) => {
-    const [key, value] = dict;
+  Object.entries(chooseClassObject[choosenDataType]).forEach(([key, value]) => {
     console.log("[244] Start Option:", key, "Value:", value);
-    document.querySelector(applyClassList[key]).hidden = !value;
-    console.log("[246] End Option:", key, "Value:", value);
+    const element = document.querySelector(applyClassList[key]);
+    if (element) {
+      element.hidden = !value;
+      console.log("[246] End Option:", key, "Value:", value);
+    } else {
+      console.error(`Element not found for key: ${key}`);
+    }
   });
 }
 
