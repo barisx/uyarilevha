@@ -17,7 +17,7 @@ function getProductId() {
     const productIdMatch = href.match(/\/product\/(\d+)/);
     if (productIdMatch) {
       productId = productIdMatch[1];
-      console.log("Extracted Product ID:", productId);
+      // console.log("Extracted Product ID:", productId);
     } else {
       console.error("Product ID not found in the URL.");
     }
@@ -35,7 +35,7 @@ function setMaterialTypeDefault() {
   );
   optionToSelect.selected = true;
   selectElement.dispatchEvent(new Event("change", { bubbles: true }));
-  console.log("Material type set to default:", defaultMaterialValue);
+  // console.log("Material type set to default:", defaultMaterialValue);
 }
 
 function setMaterialSizeDefault() {
@@ -45,13 +45,13 @@ function setMaterialSizeDefault() {
   );
   optionToSelect.selected = true;
   optionToSelect.dispatchEvent(new Event("click", { bubbles: true }));
-  console.log("Material size set to default:", defaultSizeValue);
+  // console.log("Material size set to default:", defaultSizeValue);
 }
 
 document
   .querySelector("select#pa_olculer")
   .addEventListener("change", (event) => {
-    console.log("Size changed:", event.target.value);
+    // console.log("Size changed:", event.target.value);
     document
       .querySelector("div.wc-pao-addons-container")
       .querySelectorAll("input[type=checkbox]")
@@ -69,7 +69,7 @@ document
 document
   .querySelector("select#pa_malzeme-turu")
   .addEventListener("change", (event) => {
-    console.log("Material type changed:", event.target.value);
+    // console.log("Material type changed:", event.target.value);
     document
       .querySelector("div.wc-pao-addons-container")
       .querySelectorAll("input[type=checkbox]")
@@ -88,7 +88,7 @@ document
   });
 
 function resetAll() {
-  console.log("Resetting all settings...");
+  // console.log("Resetting all settings...");
   resetLanguage();
   resetDirection();
   specifications();
@@ -99,24 +99,24 @@ function resetAll() {
     document
       .querySelector("select#pa_malzeme-turu")
       .dispatchEvent(new Event("change"));
-    console.log("Material type change event dispatched");
+    // console.log("Material type change event dispatched");
   }, 1000);
   setTimeout(() => {
     document
       .querySelector("select#pa_olculer")
       .dispatchEvent(new Event("change"));
-    console.log("Material size change event dispatched");
+    // console.log("Material size change event dispatched");
   }, 1000);
   setTimeout(setMaterialTypeDefault, 2000);
   setTimeout(setMaterialSizeDefault, 2000);
 }
 
 window.addEventListener("load", () => {
-  console.log("Window loaded");
+  // console.log("Window loaded");
   updateSizes();
   updateChooses();
   getProductId();
-  console.log("Product ID:", productId);
+  // console.log("Product ID:", productId);
 
   document.querySelector("a.reset_variations").addEventListener("click", () => {
     resetAll();
@@ -132,7 +132,7 @@ function resetLanguageWithClassName() {
     for (let i = 1; i < elements.length; i++) {
       elements[i].classList.remove("selected");
     }
-    console.log("Language reset with class name.");
+    // console.log("Language reset with class name.");
   } else {
     console.error("Language elements not found.");
   }
@@ -153,7 +153,7 @@ function resetDirectionWithClassName() {
     for (let i = 1; i < elements.length; i++) {
       elements[i].classList.remove("selected");
     }
-    console.log("Direction reset with class name.");
+    // console.log("Direction reset with class name.");
   } else {
     console.error("Direction elements not found.");
   }
@@ -280,13 +280,13 @@ var chooseClassObject = {
 };
 
 function updateChooses() {
-  console.log("[243] Updating chooses for:", choosenDataType);
+  // console.log("[243] Updating chooses for:", choosenDataType);
   Object.entries(chooseClassObject[choosenDataType]).forEach(([key, value]) => {
-    console.log("[244] Start Option:", key, "Value:", value);
+    // console.log("[244] Start Option:", key, "Value:", value);
     const element = document.querySelector(applyClassList[key]);
     if (element) {
       element.hidden = !value;
-      console.log("[246] End Option:", key, "Value:", value);
+      // console.log("[246] End Option:", key, "Value:", value);
     } else {
       console.error(`Element not found for key: ${key}`);
     }
@@ -298,7 +298,7 @@ function closeAllApplyableMaterials() {
     const element = document.querySelector(selector);
     if (element) {
       element.hidden = true;
-      console.log(`Element hidden for selector: ${selector}`);
+      // console.log(`Element hidden for selector: ${selector}`);
     } else {
       console.error(`Element not found for selector: ${selector}`);
     }
@@ -317,7 +317,7 @@ function openAllApplyableMaterials() {
 }
 
 function updateSizes() {
-  console.log("[242] Updating sizes for:", choosenSize);
+  // console.log("[242] Updating sizes for:", choosenSize);
   if (!choosenSize) {
     closeAllApplyableMaterials();
   } else {
@@ -328,7 +328,7 @@ function updateSizes() {
       const element = document.querySelector(selector);
       if (element) {
         element.hidden = true;
-        console.log(`[274] Size: ${selector}, Value: ${element.hidden}`);
+        // console.log(`[274] Size: ${selector}, Value: ${element.hidden}`);
       } else {
         console.error(`Element not found for selector: ${selector}`);
       }
@@ -339,7 +339,7 @@ function updateSizes() {
       const currentElement = document.querySelector(selector);
       if (currentElement) {
         currentElement.hidden = false;
-        console.log(`[281] Size: ${selector}, Value: ${currentElement.hidden}`);
+        // console.log(`[281] Size: ${selector}, Value: ${currentElement.hidden}`);
       } else {
         console.error(`Element not found for selector: ${selector}`);
       }
@@ -605,25 +605,25 @@ function activateTriggerUpdateOptions() {
 function triggerUpdateOptions(event) {
   const clickedElement = event.target;
   const elementName = clickedElement.name;
-  console.log("Option clicked:", elementName);
+  // console.log("Option clicked:", elementName);
 
   const choosenDataType = Object.keys(chooseInputObject).find(
     (key) => elementName == applyInputList[key]
   );
-  console.log("Chosen data type:", choosenDataType);
+  // console.log("Chosen data type:", choosenDataType);
   updateOptions(choosenDataType);
 }
 
 function updateOptions(choosenDataType) {
-  console.log("Updating options for:", choosenDataType);
+  // console.log("Updating options for:", choosenDataType);
   Object.entries(chooseInputObject[choosenDataType]).forEach((entry) => {
     const [key, value] = entry;
-    console.log("Option:", key, "Value:", value);
+    // console.log("Option:", key, "Value:", value);
     const inputName = applyInputList[key];
     const inputElements = document.querySelectorAll(
       `input[name=\'${inputName}\']`
     );
-    console.log("Input name:", inputName, "Input elements:", inputElements);
+    // console.log("Input name:", inputName, "Input elements:", inputElements);
     if (!value) {
       inputElements.forEach((e) => (e.checked = false));
     }
