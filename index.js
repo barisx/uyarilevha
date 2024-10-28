@@ -547,7 +547,7 @@ var chooseInputObject = {
     "reflektor-cift": false,
     "fotolumen-etiket": false,
     "reflektor-etiket": false,
-    "kalin-dekota": false,
+    "kalin-dekota": true,
   },
   "reflektor-cift": {
     etiket: false,
@@ -559,7 +559,7 @@ var chooseInputObject = {
     "reflektor-cift": true,
     "fotolumen-etiket": false,
     "reflektor-etiket": false,
-    "kalin-dekota": false,
+    "kalin-dekota": true,
   },
   "fotolumen-etiket": {
     sac: false,
@@ -574,7 +574,7 @@ var chooseInputObject = {
   },
   "reflektor-etiket": {
     sac: false,
-    pvc: true,
+    pvc: false,
     laminasyon: false,
     "cift-yon-baski": false,
     "fotolumen-cift": false,
