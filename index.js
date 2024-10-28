@@ -57,10 +57,10 @@ document
       .querySelectorAll("input[type=checkbox]")
       .forEach((e) => (e.checked = false));
     choosenSize = choosenMaterialSize();
-    chooseInputObject[choosenDataType]["sac"] =
+    chooseClassObject[choosenDataType]["sac"] =
       choosenDataType === "reflektorlu" || choosenDataType == "fotolumen"
         ? validateMetalPlateSize()
-        : chooseInputObject[choosenDataType]["sac"];
+        : chooseClassObject[choosenDataType]["sac"];
     updateSizes();
     updateChooses();
     activateTriggerUpdateOptions();
@@ -76,10 +76,10 @@ document
       .forEach((e) => (e.checked = false));
     choosenSize = choosenMaterialSize();
     choosenDataType = choosenMaterialType();
-    chooseInputObject[choosenDataType]["sac"] =
+    chooseClassObject[choosenDataType]["sac"] =
       choosenDataType === "reflektorlu" || choosenDataType == "fotolumen"
         ? validateMetalPlateSize()
-        : chooseInputObject[choosenDataType]["sac"];
+        : chooseClassObject[choosenDataType]["sac"];
     updateSizes();
     updateChooses();
     resetLanguage();
@@ -190,21 +190,107 @@ function validateMetalPlateSize() {
     "70x70",
   ].includes(choosenSize);
 }
+var chooseClassObject = {
+  /*
+    
+    "sac": "",
+        "pvc": "",
+        "laminasyon": "",
+        "cift-yon-baski": "",
+        "fotolumen-cift": "",
+        "fotolumen-etiket": "",
+        "reflektor-etiket": "",
+        "reflektor-cift": "",*/
+  pvc: {
+    sac: false,
+    pvc: false,
+    laminasyon: true,
+    "cift-yon-baski": true,
+    "fotolumen-etiket": false,
+    "reflektor-etiket": false,
+    "reflektor-cift": false,
+    "fotolumen-cift": false,
+    "kalin-dekota": false,
+  },
+  fotolumen: {
+    sac: validateMetalPlateSize(),
+    pvc: true,
+    laminasyon: true,
+    "cift-yon-baski": false,
+    "fotolumen-etiket": true,
+    "reflektor-etiket": false,
+    "reflektor-cift": false,
+    "fotolumen-cift": true,
+    "kalin-dekota": true,
+  },
+  reflektorlu: {
+    sac: validateMetalPlateSize(),
+    pvc: true,
+    laminasyon: true,
+    "cift-yon-baski": false,
+    "fotolumen-etiket": false,
+    "reflektor-etiket": true,
+    "reflektor-cift": true,
+    "fotolumen-cift": false,
+    "kalin-dekota": true,
+  },
+  dekota: {
+    sac: false,
+    pvc: false,
+    laminasyon: true,
+    "cift-yon-baski": true,
+    "fotolumen-etiket": false,
+    "reflektor-etiket": false,
+    "reflektor-cift": false,
+    "fotolumen-cift": false,
+  },
+  sac: {
+    sac: false,
+    pvc: false,
+    laminasyon: false,
+    "cift-yon-baski": true,
+    "fotolumen-etiket": false,
+    "reflektor-etiket": false,
+    "reflektor-cift": false,
+    "fotolumen-cift": false,
+    "kalin-dekota": true,
+  },
+  etiket: {
+    sac: false,
+    pvc: false,
+    laminasyon: false,
+    "cift-yon-baski": false,
+    "fotolumen-etiket": false,
+    "reflektor-etiket": false,
+    "reflektor-cift": false,
+    "fotolumen-cift": false,
+    "kalin-dekota": false,
+  },
+  magnet: {
+    sac: false,
+    pvc: false,
+    laminasyon: true,
+    "cift-yon-baski": false,
+    "fotolumen-etiket": false,
+    "reflektor-etiket": false,
+    "reflektor-cift": false,
+    "fotolumen-cift": false,
+    "kalin-dekota": false,
+  },
+};
 
 function updateChooses() {
   // console.log("[243] Updating chooses for:", choosenDataType);
-  Object.entries(choosenClassObject[choosenDataType]).forEach(
-    ([key, value]) => {
-      // console.log("[244] Start Option:", key, "Value:", value);
-      const element = document.querySelector(applyClassList[key]);
-      if (element) {
-        element.hidden = !value;
-        // console.log("[246] End Option:", key, "Value:", value);
-      } else {
-        console.error(`Element not found for key: ${key}`);
-      }
+  Object.entries(chooseClassObject[choosenDataType]).forEach(([key, value]) => {
+    // console.log("[244] Start Option:", key, "Value:", value);
+    const element = document.querySelector(applyClassList[key]);
+    if (element) {
+      element.hidden = !value;
+      // console.log("[246] End Option:", key, "Value:", value);
+    } else {
+      console.error(`Element not found for key: ${key}`);
     }
-  );
+  });
 }
 
 function closeAllApplyableMaterials() {
