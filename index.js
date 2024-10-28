@@ -253,7 +253,7 @@ var chooseClassObject = {
     "reflektor-etiket": false,
     "reflektor-cift": false,
     "fotolumen-cift": false,
-    "kalin-dekota": true,
+    "kalin-dekota": false,
   },
   etiket: {
     sac: false,
