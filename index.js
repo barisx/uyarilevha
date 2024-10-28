@@ -57,10 +57,10 @@ document
       .querySelectorAll("input[type=checkbox]")
       .forEach((e) => (e.checked = false));
     choosenSize = choosenMaterialSize();
-    chooseClassObject[choosenDataType]["sac"] =
+    chooseInputObject[choosenDataType]["sac"] =
       choosenDataType === "reflektorlu" || choosenDataType == "fotolumen"
         ? validateMetalPlateSize()
-        : chooseClassObject[choosenDataType]["sac"];
+        : chooseInputObject[choosenDataType]["sac"];
     updateSizes();
     updateChooses();
     activateTriggerUpdateOptions();
@@ -76,10 +76,10 @@ document
       .forEach((e) => (e.checked = false));
     choosenSize = choosenMaterialSize();
     choosenDataType = choosenMaterialType();
-    chooseClassObject[choosenDataType]["sac"] =
+    chooseInputObject[choosenDataType]["sac"] =
       choosenDataType === "reflektorlu" || choosenDataType == "fotolumen"
         ? validateMetalPlateSize()
-        : chooseClassObject[choosenDataType]["sac"];
+        : chooseInputObject[choosenDataType]["sac"];
     updateSizes();
     updateChooses();
     resetLanguage();
@@ -193,16 +193,18 @@ function validateMetalPlateSize() {
 
 function updateChooses() {
   // console.log("[243] Updating chooses for:", choosenDataType);
-  Object.entries(chooseClassObject[choosenDataType]).forEach(([key, value]) => {
-    // console.log("[244] Start Option:", key, "Value:", value);
-    const element = document.querySelector(applyClassList[key]);
-    if (element) {
-      element.hidden = !value;
-      // console.log("[246] End Option:", key, "Value:", value);
-    } else {
-      console.error(`Element not found for key: ${key}`);
+  Object.entries(choosenClassObject[choosenDataType]).forEach(
+    ([key, value]) => {
+      // console.log("[244] Start Option:", key, "Value:", value);
+      const element = document.querySelector(applyClassList[key]);
+      if (element) {
+        element.hidden = !value;
+        // console.log("[246] End Option:", key, "Value:", value);
+      } else {
+        console.error(`Element not found for key: ${key}`);
+      }
     }
-  });
+  );
 }
 
 function closeAllApplyableMaterials() {
